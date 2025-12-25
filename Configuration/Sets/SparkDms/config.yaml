@@ -1,0 +1,4 @@
+name: spark-design-system/spark-dms
+label: 'Spark DMS'
+dependencies:
+  - typo3/fluid-styled-content

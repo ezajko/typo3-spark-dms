@@ -1,0 +1,2 @@
+# cat=storage; type=int; label=Protected Storage UID (for DMS Documents)
+protectedStorageUid = 0

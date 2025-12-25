@@ -1,0 +1,50 @@
+
+plugin.tx_sparkdms_pi1 {
+    view {
+        templateRootPaths.0 = EXT:spark_dms/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_sparkdms_pi1.view.templateRootPath}
+        partialRootPaths.0 = EXT:spark_dms/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_sparkdms_pi1.view.partialRootPath}
+        layoutRootPaths.0 = EXT:spark_dms/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_sparkdms_pi1.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = {$plugin.tx_sparkdms_pi1.persistence.storagePid}
+    }
+}
+
+
+
+
+plugin.tx_sparkdms_pi2 {
+    view {
+        templateRootPaths.0 = EXT:spark_dms/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_sparkdms_pi1.view.templateRootPath}
+        partialRootPaths.0 = EXT:spark_dms/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_sparkdms_pi1.view.partialRootPath}
+        layoutRootPaths.0 = EXT:spark_dms/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_sparkdms_pi1.view.layoutRootPath}
+        
+        # Share Namespace to allow processing links from Pi1 correctly
+        pluginNamespace = tx_sparkdms_pi1
+    }
+    persistence {
+        storagePid = {$plugin.tx_sparkdms_pi1.persistence.storagePid}
+    }
+}
+
+config.tx_extbase.persistence.classes {
+    EtfUnsa\SparkDms\Domain\Model\Document {
+        tableName = tx_sparkdms_domain_model_document
+    }
+    EtfUnsa\SparkDms\Domain\Model\DocumentVersion {
+        tableName = tx_sparkdms_domain_model_document_version
+    }
+    EtfUnsa\SparkDms\Domain\Model\DocumentType {
+        tableName = tx_sparkdms_domain_model_document_type
+    }
+    EtfUnsa\SparkDms\Domain\Model\DocumentCategory {
+        tableName = tx_sparkdms_domain_model_document_category
+    }
+}
+
