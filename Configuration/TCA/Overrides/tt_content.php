@@ -39,8 +39,3 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignat
     $pluginSignaturePi2,
     'FILE:EXT:spark_dms/Configuration/FlexForms/Detail.xml'
 );
-
-// Register PageTS for ViewType options
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-    '@import "EXT:spark_dms/Configuration/PageTS/ContentElement/Element/Dms.tsconfig"'
-);

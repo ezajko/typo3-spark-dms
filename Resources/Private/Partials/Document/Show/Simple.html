@@ -1,0 +1,37 @@
+<f:comment><!--
+    Simple/Plain Detail View for Document
+    Minimal view without heavy styling.
+    
+    Author: Ernedin Zajko <ezajko@root.ba>
+--></f:comment>
+
+<div class="spark-dms-detail spark-dms-detail--simple">
+    <h2>{document.title}</h2>
+
+    <f:if condition="{document.documentDate}">
+        <p class="text-muted">
+            Date: <f:format.date format="d.m.Y">{document.documentDate}</f:format.date>
+        </p>
+    </f:if>
+
+    <f:if condition="{document.type}">
+        <p>Type: {document.type.title}</p>
+    </f:if>
+
+    <f:if condition="{document.category -> f:count()}">
+        <p>
+            Categories:
+            <f:for each="{document.category}" as="category" iteration="iter">
+                {category.title}<f:if condition="{iter.isLast} == 0">, </f:if>
+            </f:for>
+        </p>
+    </f:if>
+
+    <f:if condition="{document.file}">
+        <p>
+            <f:link.action action="download" arguments="{document: document}">
+                Download Document
+            </f:link.action>
+        </p>
+    </f:if>
+</div>

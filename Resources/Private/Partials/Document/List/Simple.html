@@ -1,0 +1,44 @@
+<f:comment><!--
+    Simple/Plain List View for Documents
+    Minimal list without styling, just basic information.
+    
+    Author: Ernedin Zajko <ezajko@root.ba>
+--></f:comment>
+
+<div class="spark-dms-list spark-dms-list--simple">
+    <f:if condition="{documents}">
+        <f:then>
+            <ul class="list-unstyled">
+                <f:for each="{documents}" as="document">
+                    <li class="mb-2">
+                        <f:if condition="{detailPid}">
+                            <f:then>
+                                <f:link.action action="show" pluginName="Pi2" arguments="{document: document}"
+                                    pageUid="{detailPid}">
+                                    {document.title}
+                                </f:link.action>
+                            </f:then>
+                            <f:else>
+                                {document.title}
+                            </f:else>
+                        </f:if>
+                        <f:if condition="{document.documentDate}">
+                            <small class="text-muted ms-2">
+                                (<f:format.date format="d.m.Y">{document.documentDate}</f:format.date>)
+                            </small>
+                        </f:if>
+                        <f:if condition="{document.file}">
+                            <f:link.action action="download" arguments="{document: document}" class="ms-2"
+                                title="Download">
+                                ↓
+                            </f:link.action>
+                        </f:if>
+                    </li>
+                </f:for>
+            </ul>
+        </f:then>
+        <f:else>
+            <p>No documents found.</p>
+        </f:else>
+    </f:if>
+</div>

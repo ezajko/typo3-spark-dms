@@ -8,15 +8,13 @@
                 </TCEforms>
                 <type>array</type>
                 <el>
-                    <!-- VIEW TYPE -->
+                    <!-- VIEW TYPE (options added via PageTS) -->
                     <settings.viewType>
                         <label>View Type</label>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
-                            <items>
-                                <!-- Default item, additional items added via PageTS -->
-                            </items>
+                            <items></items>
                         </config>
                     </settings.viewType>
                 </el>

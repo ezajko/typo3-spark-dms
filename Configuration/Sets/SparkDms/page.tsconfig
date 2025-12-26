@@ -1,0 +1,6 @@
+#
+# PageTS for spark_dms
+# Registers ViewType options for List and Detail plugins
+#
+
+@import 'EXT:spark_dms/Configuration/PageTS/ContentElement/Element/Dms.tsconfig'

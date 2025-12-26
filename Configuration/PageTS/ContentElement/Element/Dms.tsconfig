@@ -18,18 +18,10 @@
 # --------------------------------------------------------------------------
 TCEFORM.tt_content.pi_flexform.sparkdms_pi1.sDEF.settings\.viewType {
     addItems {
-        # Default view types
-        List = Default (Table)
-        Card = Cards
-        Folder = Folder View
+        Default = Default
+        Simple = Simple / Plain
+        Card = Card
         Debug = Debug
-        
-        # EXAMPLE: Adding a completely new view type
-        # 1. Add the line below:
-        # Timeline = Timeline View
-        #
-        # 2. Create the corresponding template:
-        #    Partials/Document/List/Timeline.html
     }
 }
 
@@ -38,15 +30,10 @@ TCEFORM.tt_content.pi_flexform.sparkdms_pi1.sDEF.settings\.viewType {
 # --------------------------------------------------------------------------
 TCEFORM.tt_content.pi_flexform.sparkdms_pi2.sDEF.settings\.viewType {
     addItems {
-        # Default view types
-        Default = Default (Full)
-        Card = Card (Compact)
+        Default = Default
+        Simple = Simple / Plain
+        Card = Card
+        History = History (Version Changes)
         Debug = Debug
-        
-        # EXAMPLE: Adding a "Mini" view for sidebars
-        # Mini = Mini (Sidebar)
-        #
-        # Requires template:
-        # Partials/Document/Show/Mini.html
     }
 }
