@@ -14,6 +14,7 @@ use DateTime;
 class Document extends AbstractEntity
 {
     protected string $title = '';
+    protected string $registryNumber = '';
     protected string $uuid = '';
     protected bool $isProtected = false;
     protected ?DateTime $documentDate = null;
@@ -31,10 +32,16 @@ class Document extends AbstractEntity
      */
     protected ObjectStorage $versions;
 
+    /**
+     * @var ObjectStorage<Document>
+     */
+    protected ObjectStorage $relatedDocuments;
+
     public function __construct()
     {
         $this->category = new ObjectStorage();
         $this->versions = new ObjectStorage();
+        $this->relatedDocuments = new ObjectStorage();
     }
 
     public function getTitle(): string
@@ -47,6 +54,16 @@ class Document extends AbstractEntity
         $this->title = $title;
     }
 
+    public function getRegistryNumber(): string
+    {
+        return $this->registryNumber;
+    }
+
+    public function setRegistryNumber(string $registryNumber): void
+    {
+        $this->registryNumber = $registryNumber;
+    }
+
     public function getUuid(): string
     {
         return $this->uuid;
@@ -57,7 +74,7 @@ class Document extends AbstractEntity
         $this->uuid = $uuid;
     }
 
-    public function isProtected(): bool
+    public function getIsProtected(): bool
     {
         return $this->isProtected;
     }
@@ -134,7 +151,7 @@ class Document extends AbstractEntity
     }
 
     /**
-     * Helper: Get the Latest Version
+     * Helper: Get the Latest Version (sorted by tstamp descending)
      */
     public function getLatestVersion(): ?DocumentVersion
     {
@@ -142,15 +159,24 @@ class Document extends AbstractEntity
             return null;
         }
 
-        // Ideally sorting is handled by TCA/Persistence, but let's be safe
+        $sorted = $this->getSortedVersions();
+        return $sorted[0] ?? null;
+    }
+
+    /**
+     * Helper: Get all versions sorted by createdAt descending (newest first)
+     * 
+     * @return DocumentVersion[]
+     */
+    public function getSortedVersions(): array
+    {
         $versionsArray = $this->versions->toArray();
         usort($versionsArray, function (DocumentVersion $a, DocumentVersion $b) {
-            // Sort Descending by UID (or tstamp ideally if available in model getters)
-            // Since we don't expose tstamp in getter yet, we use UID as proxy for creation order
-            return $b->getUid() <=> $a->getUid(); 
+            // Sort by createdAt descending (newest first), fallback to UID
+            $createdDiff = $b->getCreatedAt() <=> $a->getCreatedAt();
+            return $createdDiff !== 0 ? $createdDiff : ($b->getUid() <=> $a->getUid());
         });
-
-        return $versionsArray[0] ?? null;
+        return $versionsArray;
     }
 
     /**
@@ -160,5 +186,28 @@ class Document extends AbstractEntity
     {
         $bestVersion = $this->getLatestVersion();
         return $bestVersion ? $bestVersion->getFile() : null;
+    }
+
+    /**
+     * @return ObjectStorage<Document>
+     */
+    public function getRelatedDocuments(): ObjectStorage
+    {
+        return $this->relatedDocuments;
+    }
+
+    public function setRelatedDocuments(ObjectStorage $relatedDocuments): void
+    {
+        $this->relatedDocuments = $relatedDocuments;
+    }
+
+    public function addRelatedDocument(Document $document): void
+    {
+        $this->relatedDocuments->attach($document);
+    }
+
+    public function removeRelatedDocument(Document $document): void
+    {
+        $this->relatedDocuments->detach($document);
     }
 }

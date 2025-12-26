@@ -18,12 +18,16 @@ return [
             'endtime' => 'endtime',
         ],
         'searchFields' => 'title',
-        'iconfile' => 'EXT:spark_dms/Resources/Public/Icons/Document.svg'
+        'iconfile' => 'EXT:spark_dms/Resources/Public/Icons/Document.svg',
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
     ],
     'types' => [
         '1' => ['showitem' => '
-            --div--;General, title, type, category, document_date, is_protected, uuid,
+            --div--;General, title, registry_number, type, category, document_date, is_protected, uuid,
             --div--;Versions, versions,
+            --div--;Related, related_documents,
             --div--;Language, sys_language_uid, l10n_parent, l10n_diffsource,
             --div--;Access, hidden, starttime, endtime,
         '],
@@ -72,16 +76,20 @@ return [
             'label' => 'Title',
             'config' => ['type' => 'input', 'eval' => 'trim', 'required' => true],
         ],
+        'registry_number' => [
+            'exclude' => true,
+            'label' => 'Registry Number (Djelovodni broj)',
+            'config' => ['type' => 'input', 'eval' => 'trim', 'size' => 30],
+        ],
         'type' => [
             'exclude' => true,
             'label' => 'Document Type',
             'config' => [
                 'type' => 'select',
-                'renderType' => 'selectTree',
+                'renderType' => 'selectSingle',
                 'foreign_table' => 'tx_sparkdms_domain_model_document_type',
-                'treeConfig' => [
-                    'parentField' => 'parent',
-                    'appearance' => ['showHeader' => true, 'expandAll' => true, 'maxLevels' => 5],
+                'items' => [
+                    ['label' => '-- Select Type --', 'value' => 0],
                 ],
                 'minitems' => 0,
                 'maxitems' => 1,
@@ -105,8 +113,12 @@ return [
         ],
         'document_date' => [
             'exclude' => true,
-            'label' => 'Date',
-            'config' => ['type' => 'datetime', 'dbType' => 'date', 'eval' => 'date', 'default' => 0],
+            'label' => 'Document Date',
+            'config' => [
+                'type' => 'datetime',
+                'format' => 'date',
+                'default' => 0,
+            ],
         ],
         'is_protected' => [
             'exclude' => true,
@@ -120,10 +132,14 @@ return [
                 'type' => 'inline',
                 'foreign_table' => 'tx_sparkdms_domain_model_document_version',
                 'foreign_field' => 'document',
-                'foreign_sortby' => 'tstamp',
+                'foreign_sortby' => 'sorting',
+                'maxitems' => 99,
                 'appearance' => [
                     'collapseAll' => true,
                     'expandSingle' => true,
+                    'useSortable' => true,
+                    'showNewRecordLink' => true,
+                    'newRecordLinkTitle' => 'Add Version',
                 ],
             ],
         ],
@@ -131,6 +147,18 @@ return [
             'exclude' => true,
             'label' => 'UUID',
             'config' => ['type' => 'uuid'],
+        ],
+        'related_documents' => [
+            'exclude' => true,
+            'label' => 'Related Documents',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectMultipleSideBySide',
+                'foreign_table' => 'tx_sparkdms_domain_model_document',
+                'MM' => 'tx_sparkdms_document_related_mm',
+                'minitems' => 0,
+                'maxitems' => 99,
+            ],
         ],
     ],
 ];

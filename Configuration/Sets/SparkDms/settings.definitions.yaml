@@ -1,0 +1,23 @@
+# Spark DMS Site Settings
+# These settings can be configured per-site in the Site Configuration
+
+categories:
+  sparkdms:
+    label: 'Spark DMS'
+
+settings:
+  # Record Storage Page - where DMS records are stored
+  sparkdms.recordStoragePid:
+    category: sparkdms
+    label: 'Record Storage Page'
+    description: 'Page UID where DMS records (Documents, Types, Categories) are stored'
+    type: int
+    default: 0
+
+  # Protected File Storage UID
+  sparkdms.protectedStorageUid:
+    category: sparkdms
+    label: 'Protected Storage UID'
+    description: 'FAL Storage UID for protected DMS documents'
+    type: int
+    default: 0

@@ -4,3 +4,8 @@
 #
 
 @import 'EXT:spark_dms/Configuration/PageTS/ContentElement/Element/Dms.tsconfig'
+
+# Configure default upload folder for DocumentVersion file field
+TCEFORM.tx_sparkdms_domain_model_document_version.file {
+    config.uploadFolder = 2:/_inbox
+}

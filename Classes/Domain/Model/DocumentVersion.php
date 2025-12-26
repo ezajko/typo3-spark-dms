@@ -11,6 +11,7 @@ class DocumentVersion extends AbstractEntity
 {
     protected string $versionLabel = '';
     protected string $uuid = '';
+    protected int $createdAt = 0;
     protected ?FileReference $file = null;
     protected ?Document $document = null;
 
@@ -52,5 +53,25 @@ class DocumentVersion extends AbstractEntity
     public function setDocument(?Document $document): void
     {
         $this->document = $document;
+    }
+
+    /**
+     * Get creation date for sorting and display
+     */
+    public function getCreatedAt(): int
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Check if this is the latest version of the parent document
+     */
+    public function getIsLatest(): bool
+    {
+        if ($this->document === null) {
+            return false;
+        }
+        $latest = $this->document->getLatestVersion();
+        return $latest !== null && $latest->getUid() === $this->getUid();
     }
 }

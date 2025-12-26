@@ -8,7 +8,7 @@ defined('TYPO3') or die();
         'SparkDms',
         'Pi1',
         [
-            \EtfUnsa\SparkDms\Controller\DocumentController::class => 'list, download'
+            \EtfUnsa\SparkDms\Controller\DocumentController::class => 'list, show, download'
         ],
         // non-cacheable actions
         [
@@ -41,6 +41,10 @@ defined('TYPO3') or die();
             }
         }'
     );
+
+    // DataHandler Hook for file organization after Document save
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['spark_dms'] 
+        = \EtfUnsa\SparkDms\Hook\DataHandlerHook::class;
 
 })();
 

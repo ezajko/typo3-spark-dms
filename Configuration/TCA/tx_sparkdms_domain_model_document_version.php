@@ -19,7 +19,10 @@ return [
         ],
         'hideTable' => false,// Inline only
         'searchFields' => 'version_label',
-        'iconfile' => 'EXT:spark_dms/Resources/Public/Icons/DocumentVersion.svg'
+        'iconfile' => 'EXT:spark_dms/Resources/Public/Icons/DocumentVersion.svg',
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
     ],
     'types' => [
         '1' => ['showitem' => '
@@ -77,6 +80,16 @@ return [
             'exclude' => true,
             'label' => 'UUID',
             'config' => ['type' => 'uuid'],
+        ],
+        'created_at' => [
+            'exclude' => true,
+            'label' => 'Created At',
+            'config' => [
+                'type' => 'datetime',
+                'format' => 'datetime',
+                'default' => 'now',
+                'readOnly' => true,
+            ],
         ],
     ],
 ];

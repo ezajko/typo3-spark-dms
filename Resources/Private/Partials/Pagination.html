@@ -1,0 +1,53 @@
+<f:if condition="{paginator.numberOfPages} > 1">
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+
+            <f:comment><!-- Previous Page --></f:comment>
+            <f:if condition="{pagination.previousPageNumber}">
+                <f:then>
+                    <li class="page-item">
+                        <f:link.action action="list" arguments="{currentPage: pagination.previousPageNumber}"
+                            class="page-link" title="Previous">
+                            <i class="bi bi-chevron-left"></i>
+                        </f:link.action>
+                    </li>
+                </f:then>
+                <f:else>
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="bi bi-chevron-left"></i></span>
+                    </li>
+                </f:else>
+            </f:if>
+
+            <f:comment><!-- Use built-in logic for SlidingWindow to get page numbers --></f:comment>
+            <f:for each="{pagination.allPageNumbers}" as="page">
+                <li class="page-item {f:if(condition: '{page} == {paginator.currentPageNumber}', then: 'active')}">
+                    <f:link.action action="list" arguments="{currentPage: page}" class="page-link">
+                        {page}
+                    </f:link.action>
+                </li>
+            </f:for>
+
+            <f:comment><!-- Next Page --></f:comment>
+            <f:if condition="{pagination.nextPageNumber}">
+                <f:then>
+                    <li class="page-item">
+                        <f:link.action action="list" arguments="{currentPage: pagination.nextPageNumber}"
+                            class="page-link" title="Next">
+                            <i class="bi bi-chevron-right"></i>
+                        </f:link.action>
+                    </li>
+                </f:then>
+                <f:else>
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="bi bi-chevron-right"></i></span>
+                    </li>
+                </f:else>
+            </f:if>
+        </ul>
+
+        <div class="text-center text-muted small mt-2">
+            Showing records {pagination.startRecordNumber} - {pagination.endRecordNumber}
+        </div>
+    </nav>
+</f:if>

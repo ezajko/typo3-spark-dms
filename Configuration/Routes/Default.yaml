@@ -1,0 +1,45 @@
+routeEnhancers:
+  SparkDms:
+    type: Extbase
+    extension: SparkDms
+    plugin: Pi1
+    routes:
+      - routePath: '/dms/{document}/{version}/download'
+        _controller: 'Document::download'
+        _arguments:
+          document: document
+          version: version
+      - routePath: '/dms/{document}/download'
+        _controller: 'Document::download'
+        _arguments:
+          document: document
+      - routePath: '/dms/{document}/show'
+        _controller: 'Document::show'
+        _arguments:
+          document: document
+    defaultController: 'Document::list'
+    aspects:
+      document:
+        type: PersistedAliasMapper
+        tableName: tx_sparkdms_domain_model_document
+        routeFieldName: uuid
+      version:
+        type: PersistedAliasMapper
+        tableName: tx_sparkdms_domain_model_document_version
+        routeFieldName: uuid
+
+  SparkDmsDetail:
+    type: Extbase
+    extension: SparkDms
+    plugin: Pi2
+    routes:
+      - routePath: '/dms/{document}/show'
+        _controller: 'Document::show'
+        _arguments:
+          document: document
+    defaultController: 'Document::show'
+    aspects:
+      document:
+        type: PersistedAliasMapper
+        tableName: tx_sparkdms_domain_model_document
+        routeFieldName: uuid

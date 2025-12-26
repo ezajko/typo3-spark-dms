@@ -16,11 +16,15 @@ return [
             'disabled' => 'hidden',
         ],
         'searchFields' => 'title',
-        'iconfile' => 'EXT:spark_dms/Resources/Public/Icons/DocumentCategory.svg'
+        'iconfile' => 'EXT:spark_dms/Resources/Public/Icons/DocumentCategory.svg',
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
     ],
     'types' => [
         '1' => ['showitem' => '
             --div--;General, title, parent, slug, uuid,
+            --div--;Permissions, allowed_be_groups,
             --div--;Language, sys_language_uid, l10n_parent, l10n_diffsource,
             --div--;Access, hidden,
         '],
@@ -92,6 +96,19 @@ return [
             'exclude' => true,
             'label' => 'UUID',
             'config' => ['type' => 'uuid'],
+        ],
+        'allowed_be_groups' => [
+            'exclude' => true,
+            'label' => 'Allowed Backend Groups',
+            'description' => 'Only users in these groups can add documents to this category',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectMultipleSideBySide',
+                'foreign_table' => 'be_groups',
+                'MM' => 'tx_sparkdms_category_begroup_mm',
+                'minitems' => 0,
+                'maxitems' => 99,
+            ],
         ],
     ],
 ];

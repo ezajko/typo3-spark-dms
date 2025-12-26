@@ -57,29 +57,36 @@
     </f:if>
 
     <f:comment><!-- Version History --></f:comment>
-    <f:if condition="{document.versions -> f:count()}">
+    <f:if condition="{sortedVersions -> f:count()}">
         <section class="mb-4">
             <h5>Version History</h5>
             <table class="table table-sm table-striped">
                 <thead>
                     <tr>
                         <th>Version</th>
+                        <th>Date</th>
                         <th>File</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <f:for each="{document.versions}" as="version">
-                        <tr>
+                    <f:for each="{sortedVersions}" as="version">
+                        <tr class="{f:if(condition: version.isLatest, then: 'table-success')}">
                             <td>
                                 <f:if condition="{version.versionLabel}">
                                     <f:then>
                                         <span class="badge bg-secondary">{version.versionLabel}</span>
                                     </f:then>
                                     <f:else>
-                                        <span class="text-muted">-</span>
+                                        <span class="text-muted">v{version.uid}</span>
                                     </f:else>
                                 </f:if>
+                                <f:if condition="{version.isLatest}">
+                                    <span class="badge bg-success ms-1">Latest</span>
+                                </f:if>
+                            </td>
+                            <td>
+                                <f:format.date format="d.m.Y H:i">@{version.createdAt}</f:format.date>
                             </td>
                             <td>
                                 <f:if condition="{version.file}">
@@ -89,10 +96,10 @@
                             <td>
                                 <f:if condition="{version.file}">
                                     <f:comment><!-- Direct file link for specific versions --></f:comment>
-                                    <a href="{version.file.originalResource.publicUrl}"
-                                        class="btn btn-sm btn-outline-secondary" target="_blank">
+                                    <f:link.action action="download" arguments="{document: document, version: version}"
+                                        class="btn btn-sm btn-outline-secondary" title="Download this version">
                                         <i class="bi bi-download"></i>
-                                    </a>
+                                    </f:link.action>
                                 </f:if>
                             </td>
                         </tr>

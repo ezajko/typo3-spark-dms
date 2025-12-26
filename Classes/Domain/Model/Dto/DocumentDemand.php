@@ -20,7 +20,7 @@ class DocumentDemand
     
     protected ?DateTime $dateTo = null;
     
-    protected int $limit = 10;
+    protected int $limit = 0;
     
     protected int $offset = 0;
 

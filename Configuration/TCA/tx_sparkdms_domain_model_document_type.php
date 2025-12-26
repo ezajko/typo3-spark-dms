@@ -16,11 +16,14 @@ return [
             'disabled' => 'hidden',
         ],
         'searchFields' => 'title,description',
-        'iconfile' => 'EXT:spark_dms/Resources/Public/Icons/DocumentType.svg'
+        'iconfile' => 'EXT:spark_dms/Resources/Public/Icons/DocumentType.svg',
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
     ],
     'types' => [
         '1' => ['showitem' => '
-            --div--;General, title, parent, slug, uuid, description,
+            --div--;General, title, slug, uuid, description,
             --div--;Language, sys_language_uid, l10n_parent, l10n_diffsource,
             --div--;Access, hidden,
         '],
@@ -59,21 +62,7 @@ return [
             'label' => 'Title',
             'config' => ['type' => 'input', 'eval' => 'trim', 'required' => true],
         ],
-        'parent' => [
-            'exclude' => true,
-            'label' => 'Parent Type',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectTree',
-                'foreign_table' => 'tx_sparkdms_domain_model_document_type',
-                'treeConfig' => [
-                    'parentField' => 'parent',
-                    'appearance' => ['showHeader' => true, 'expandAll' => true, 'maxLevels' => 5],
-                ],
-                'minitems' => 0,
-                'maxitems' => 1,
-            ],
-        ],
+        // Removed: parent field (DocumentType is now flat)
         'slug' => [
             'exclude' => true,
             'label' => 'Slug',
