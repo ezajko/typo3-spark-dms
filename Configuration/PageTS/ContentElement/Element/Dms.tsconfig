@@ -1,0 +1,52 @@
+# Configuration for Spark DMS View Types
+# This file controls the available options in the "View Type" dropdown
+# for both the List (Pi1) and Detail (Pi2) plugins.
+#
+# Documentation:
+# Use 'addItems' to add new view types to the dropdown.
+# Syntax: Key = Label
+# - Key:   Used in file paths (e.g., Partials/Document/List/Key.html)
+# - Label: Visible in the backend dropdown
+#
+# IMPORTANT: The field name "settings.viewType" contains a dot, 
+# so it MUST be escaped as "settings\.viewType" in TSConfig.
+#
+# Author: Ernedin Zajko <ezajko@root.ba>
+
+# --------------------------------------------------------------------------
+# List Plugin (Pi1)
+# --------------------------------------------------------------------------
+TCEFORM.tt_content.pi_flexform.sparkdms_pi1.sDEF.settings\.viewType {
+    addItems {
+        # Default view types
+        List = Default (Table)
+        Card = Cards
+        Folder = Folder View
+        Debug = Debug
+        
+        # EXAMPLE: Adding a completely new view type
+        # 1. Add the line below:
+        # Timeline = Timeline View
+        #
+        # 2. Create the corresponding template:
+        #    Partials/Document/List/Timeline.html
+    }
+}
+
+# --------------------------------------------------------------------------
+# Detail Plugin (Pi2)
+# --------------------------------------------------------------------------
+TCEFORM.tt_content.pi_flexform.sparkdms_pi2.sDEF.settings\.viewType {
+    addItems {
+        # Default view types
+        Default = Default (Full)
+        Card = Card (Compact)
+        Debug = Debug
+        
+        # EXAMPLE: Adding a "Mini" view for sidebars
+        # Mini = Mini (Sidebar)
+        #
+        # Requires template:
+        # Partials/Document/Show/Mini.html
+    }
+}

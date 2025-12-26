@@ -1,0 +1,88 @@
+<f:comment><!--
+    Folder View for Document List
+    Displays documents grouped by category in a folder-like structure.
+    Categories are displayed as clickable folders for drill-down navigation.
+    
+    Author: Ernedin Zajko <ezajko@root.ba>
+--></f:comment>
+
+<div class="spark-dms-list spark-dms-list--folders">
+    <f:comment><!-- Breadcrumb navigation (if filtering by category) --></f:comment>
+    <f:if condition="{currentCategory}">
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <f:link.action action="list"><i class="bi bi-house"></i> Root</f:link.action>
+                </li>
+                <f:for each="{categoryPath}" as="pathItem">
+                    <li class="breadcrumb-item">
+                        <f:link.action action="list" arguments="{category: pathItem}">{pathItem.title}</f:link.action>
+                    </li>
+                </f:for>
+                <li class="breadcrumb-item active" aria-current="page">{currentCategory.title}</li>
+            </ol>
+        </nav>
+    </f:if>
+
+    <f:comment><!-- Subcategories as Folders --></f:comment>
+    <f:if condition="{subcategories}">
+        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3 mb-4">
+            <f:for each="{subcategories}" as="subcategory">
+                <div class="col">
+                    <f:link.action action="list" arguments="{category: subcategory}"
+                        class="text-decoration-none d-block text-center p-3 border rounded hover-bg-light">
+                        <i class="bi bi-folder-fill text-warning fs-1 d-block mb-2"></i>
+                        <span class="text-dark">{subcategory.title}</span>
+                    </f:link.action>
+                </div>
+            </f:for>
+        </div>
+    </f:if>
+
+    <f:comment><!-- Documents in current folder --></f:comment>
+    <f:if condition="{documents}">
+        <f:then>
+            <div class="list-group">
+                <f:for each="{documents}" as="document">
+                    <div
+                        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="bi bi-file-earmark-text text-primary me-2"></i>
+                            <f:if condition="{detailPid}">
+                                <f:then>
+                                    <f:link.action action="show" pluginName="Pi2" arguments="{document: document}"
+                                        pageUid="{detailPid}">
+                                        {document.title}
+                                    </f:link.action>
+                                </f:then>
+                                <f:else>
+                                    <strong>{document.title}</strong>
+                                </f:else>
+                            </f:if>
+                            <small class="text-muted ms-2">
+                                <f:format.date format="d.m.Y">{document.documentDate}</f:format.date>
+                            </small>
+                        </div>
+                        <div>
+                            <f:if condition="{document.file}">
+                                <f:link.action action="download" arguments="{document: document}"
+                                    class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-download"></i>
+                                </f:link.action>
+                            </f:if>
+                        </div>
+                    </div>
+                </f:for>
+            </div>
+        </f:then>
+        <f:else>
+            <f:if condition="{subcategories -> f:count()}">
+                <f:else>
+                    <div class="alert alert-info">
+                        This folder is empty.
+                    </div>
+                </f:else>
+            </f:if>
+        </f:else>
+    </f:if>
+</div>

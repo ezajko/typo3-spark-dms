@@ -1,0 +1,46 @@
+<f:comment><!--
+    Card Detail View for Document
+    Compact card-style view suitable for sidebars or embedded contexts.
+    
+    Author: Ernedin Zajko <ezajko@root.ba>
+--></f:comment>
+
+<div class="spark-dms-detail spark-dms-detail--card">
+    <div class="card">
+        <div class="card-header">
+            <f:if condition="{document.type}">
+                <span class="badge bg-primary float-end">{document.type.title}</span>
+            </f:if>
+            <h5 class="card-title mb-0">{document.title}</h5>
+        </div>
+        <div class="card-body">
+            <f:if condition="{document.documentDate}">
+                <p class="card-text text-muted">
+                    <i class="bi bi-calendar"></i>
+                    <f:format.date format="d.m.Y">{document.documentDate}</f:format.date>
+                </p>
+            </f:if>
+
+            <f:if condition="{document.isProtected}">
+                <div class="alert alert-warning py-1 px-2">
+                    <small><i class="bi bi-lock"></i> This document requires authentication.</small>
+                </div>
+            </f:if>
+
+            <f:if condition="{document.category -> f:count()}">
+                <div class="mb-3">
+                    <f:for each="{document.category}" as="category">
+                        <span class="badge bg-info me-1">{category.title}</span>
+                    </f:for>
+                </div>
+            </f:if>
+        </div>
+        <div class="card-footer">
+            <f:if condition="{document.file}">
+                <f:link.action action="download" arguments="{document: document}" class="btn btn-primary w-100">
+                    <i class="bi bi-download"></i> Download
+                </f:link.action>
+            </f:if>
+        </div>
+    </div>
+</div>

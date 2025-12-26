@@ -1,0 +1,25 @@
+<f:layout name="Default" />
+
+<f:section name="Main">
+    <f:if condition="{document}">
+        <f:then>
+            <f:variable name="viewType" value="{settings.viewType -> f:or(alternative: 'Default')}" />
+            <f:render partial="Document/Show/{viewType}" arguments="{document: document, settings: settings}"
+                optional="true">
+                <f:comment><!-- Fallback if specific view type doesn't exist --></f:comment>
+                <f:render partial="Document/Show/Default" arguments="{document: document, settings: settings}"
+                    optional="true">
+                    <div class="alert alert-warning">
+                        Template partial "Partials/Document/Show/{viewType}.html" (or fallback Show/Default.html) not
+                        found.
+                    </div>
+                </f:render>
+            </f:render>
+        </f:then>
+        <f:else>
+            <div class="alert alert-info">
+                Document not found.
+            </div>
+        </f:else>
+    </f:if>
+</f:section>

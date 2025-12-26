@@ -1,0 +1,111 @@
+<f:comment><!--
+    Default Detail View for Document
+    Displays full document details with version history and download button.
+    
+    Author: Ernedin Zajko <ezajko@root.ba>
+--></f:comment>
+
+<article class="spark-dms-detail spark-dms-detail--default">
+    <f:comment><!-- Document Header --></f:comment>
+    <header class="mb-4">
+        <h1>{document.title}</h1>
+
+        <div class="d-flex gap-2 flex-wrap mb-3">
+            <f:if condition="{document.type}">
+                <span class="badge bg-primary">{document.type.title}</span>
+            </f:if>
+            <f:if condition="{document.isProtected}">
+                <span class="badge bg-warning text-dark">
+                    <i class="bi bi-lock"></i> Protected
+                </span>
+            </f:if>
+            <f:if condition="{document.documentDate}">
+                <span class="badge bg-secondary">
+                    <i class="bi bi-calendar"></i>
+                    <f:format.date format="d.m.Y">{document.documentDate}</f:format.date>
+                </span>
+            </f:if>
+        </div>
+    </header>
+
+    <f:comment><!-- Categories --></f:comment>
+    <f:if condition="{document.category -> f:count()}">
+        <section class="mb-4">
+            <h5>Categories</h5>
+            <div class="d-flex gap-2 flex-wrap">
+                <f:for each="{document.category}" as="category">
+                    <span class="badge bg-info">{category.title}</span>
+                </f:for>
+            </div>
+        </section>
+    </f:if>
+
+    <f:comment><!-- Download Section --></f:comment>
+    <f:if condition="{document.file}">
+        <section class="mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="bi bi-file-earmark-arrow-down"></i> Download
+                    </h5>
+                    <f:link.action action="download" arguments="{document: document}" class="btn btn-primary btn-lg">
+                        <i class="bi bi-download"></i> Download Latest Version
+                    </f:link.action>
+                </div>
+            </div>
+        </section>
+    </f:if>
+
+    <f:comment><!-- Version History --></f:comment>
+    <f:if condition="{document.versions -> f:count()}">
+        <section class="mb-4">
+            <h5>Version History</h5>
+            <table class="table table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th>Version</th>
+                        <th>File</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <f:for each="{document.versions}" as="version">
+                        <tr>
+                            <td>
+                                <f:if condition="{version.versionLabel}">
+                                    <f:then>
+                                        <span class="badge bg-secondary">{version.versionLabel}</span>
+                                    </f:then>
+                                    <f:else>
+                                        <span class="text-muted">-</span>
+                                    </f:else>
+                                </f:if>
+                            </td>
+                            <td>
+                                <f:if condition="{version.file}">
+                                    <small>{version.file.originalResource.name}</small>
+                                </f:if>
+                            </td>
+                            <td>
+                                <f:if condition="{version.file}">
+                                    <f:comment><!-- Direct file link for specific versions --></f:comment>
+                                    <a href="{version.file.originalResource.publicUrl}"
+                                        class="btn btn-sm btn-outline-secondary" target="_blank">
+                                        <i class="bi bi-download"></i>
+                                    </a>
+                                </f:if>
+                            </td>
+                        </tr>
+                    </f:for>
+                </tbody>
+            </table>
+        </section>
+    </f:if>
+
+    <f:comment><!-- Metadata Footer --></f:comment>
+    <footer class="border-top pt-3 text-muted small">
+        <f:if condition="{document.uuid}">
+            <span class="me-3">UUID: <code>{document.uuid}</code></span>
+        </f:if>
+    </footer>
+</article>

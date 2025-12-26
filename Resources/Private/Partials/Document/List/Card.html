@@ -1,0 +1,63 @@
+<f:comment><!--
+    Card View for Document List
+    Displays documents in a responsive card grid layout.
+    
+    Author: Ernedin Zajko <ezajko@root.ba>
+--></f:comment>
+
+<div class="spark-dms-list spark-dms-list--cards">
+    <f:if condition="{documents}">
+        <f:then>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <f:for each="{documents}" as="document">
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <f:if condition="{document.type}">
+                                    <span class="badge bg-primary mb-2">{document.type.title}</span>
+                                </f:if>
+                                <h5 class="card-title">
+                                    <f:if condition="{detailPid}">
+                                        <f:then>
+                                            <f:link.action action="show" pluginName="Pi2"
+                                                arguments="{document: document}" pageUid="{detailPid}">
+                                                {document.title}
+                                            </f:link.action>
+                                        </f:then>
+                                        <f:else>
+                                            {document.title}
+                                        </f:else>
+                                    </f:if>
+                                </h5>
+                                <p class="card-text text-muted">
+                                    <small>
+                                        <i class="bi bi-calendar"></i>
+                                        <f:format.date format="d.m.Y">{document.documentDate}</f:format.date>
+                                    </small>
+                                </p>
+                                <f:if condition="{document.isProtected}">
+                                    <span class="badge bg-warning text-dark mb-2">
+                                        <i class="bi bi-lock"></i> Protected
+                                    </span>
+                                </f:if>
+                            </div>
+                            <div class="card-footer">
+                                <f:if condition="{document.file}">
+                                    <f:link.action action="download" arguments="{document: document}"
+                                        class="btn btn-primary btn-sm w-100">
+                                        <i class="bi bi-download"></i> Download
+                                    </f:link.action>
+                                </f:if>
+                            </div>
+                        </div>
+                    </div>
+                </f:for>
+            </div>
+        </f:then>
+        <f:else>
+            <div class="alert alert-info">
+                No documents found.
+            </div>
+        </f:else>
+    </f:if>
+</div>
