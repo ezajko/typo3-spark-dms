@@ -12,74 +12,57 @@
     <f:comment><!-- Filter Form --></f:comment>
     <div class="card card-default mb-4">
         <div class="card-body">
-            <form method="get" class="row g-3 align-items-end">
-                <f:comment><!-- Preserve module route --></f:comment>
-                <input type="hidden" name="route" value="spark_dms_document" />
-
+            <f:form action="list" method="post" noCacheHash="true" class="row g-3 align-items-end">
                 <f:comment><!-- Search --></f:comment>
                 <div class="col-md-3">
                     <label class="form-label" for="filter-search">Search</label>
-                    <input type="text" id="filter-search" name="filter[search]" value="{filter.search}"
+                    <f:form.textfield id="filter-search" name="filter[search]" value="{filter.search}"
                         placeholder="Title, Registry #..." class="form-control form-control-sm" />
                 </div>
 
                 <f:comment><!-- Type --></f:comment>
                 <div class="col-md-2">
                     <label class="form-label" for="filter-type">Type</label>
-                    <select id="filter-type" name="filter[type]" class="form-select form-select-sm">
-                        <option value="">All Types</option>
-                        <f:for each="{types}" as="type">
-                            <option value="{type.uid}"
-                                selected="{f:if(condition:'{filter.type} == {type.uid}', then:'selected')}">
-                                {type.title}
-                            </option>
-                        </f:for>
-                    </select>
+                    <f:form.select id="filter-type" name="filter[type]" options="{types}" optionValueField="uid"
+                        optionLabelField="title" prependOptionLabel="All Types" prependOptionValue=""
+                        value="{filter.type}" class="form-select form-select-sm" />
                 </div>
 
                 <f:comment><!-- Category --></f:comment>
                 <div class="col-md-2">
                     <label class="form-label" for="filter-category">Category</label>
-                    <select id="filter-category" name="filter[category]" class="form-select form-select-sm">
-                        <option value="">All Categories</option>
-                        <f:for each="{categories}" as="cat">
-                            <option value="{cat.uid}"
-                                selected="{f:if(condition:'{filter.category} == {cat.uid}', then:'selected')}">
-                                {cat.title}
-                            </option>
-                        </f:for>
-                    </select>
+                    <f:form.select id="filter-category" name="filter[category]" options="{categories}"
+                        optionValueField="uid" optionLabelField="title" prependOptionLabel="All Categories"
+                        prependOptionValue="" value="{filter.category}" class="form-select form-select-sm" />
                 </div>
 
                 <f:comment><!-- Date From --></f:comment>
                 <div class="col-md-2">
                     <label class="form-label" for="filter-dateFrom">Date From</label>
-                    <input type="date" id="filter-dateFrom" name="filter[dateFrom]" value="{filter.dateFrom}"
+                    <f:form.textfield type="date" id="filter-dateFrom" name="filter[dateFrom]" value="{filter.dateFrom}"
                         class="form-control form-control-sm" />
                 </div>
 
                 <f:comment><!-- Date To --></f:comment>
                 <div class="col-md-2">
                     <label class="form-label" for="filter-dateTo">Date To</label>
-                    <input type="date" id="filter-dateTo" name="filter[dateTo]" value="{filter.dateTo}"
+                    <f:form.textfield type="date" id="filter-dateTo" name="filter[dateTo]" value="{filter.dateTo}"
                         class="form-control form-control-sm" />
                 </div>
 
                 <f:comment><!-- Buttons --></f:comment>
                 <div class="col-md-1">
-                    <button type="submit" class="btn btn-primary btn-sm w-100">
-                        <core:icon identifier="actions-filter" size="small" /> Filter
-                    </button>
+                    <f:form.submit value="Filter" class="btn btn-primary btn-sm w-100" />
                 </div>
-            </form>
+            </f:form>
 
             <f:comment><!-- Reset Link --></f:comment>
             <f:if
                 condition="{filter.search} || {filter.type} || {filter.category} || {filter.dateFrom} || {filter.dateTo}">
                 <div class="mt-2">
-                    <be:link.route route="spark_dms_document" class="btn btn-sm btn-outline-secondary">
+                    <f:link.action action="list" class="btn btn-sm btn-outline-secondary">
                         <core:icon identifier="actions-close" size="small" /> Reset Filters
-                    </be:link.route>
+                    </f:link.action>
                 </div>
             </f:if>
         </div>
@@ -91,56 +74,88 @@
             <thead>
                 <tr>
                     <th>
-                        <be:link.route route="spark_dms_document"
-                            parameters="{filter: filter, sort: 'title', direction: '{f:if(condition:\" {sort}==\'title\'
-                            && {direction}==\'ASC\'\", then:\"desc\", else:\"asc\")}'}">
+                        <f:link.action action="list"
+                            arguments="{filter: filter, sort: 'title', direction: '{f:if(condition:\"
+                            {sort}==\'title\'\", then:\"{f:if(condition:\"{direction}==\'ASC\'\", then:\"desc\",
+                            else:\"asc\")}\", else:\"asc\")}'}">
                             <f:translate key="tx_sparkdms_domain_model_document.title" default="Title" />
                             <f:if condition="{sort} == 'title'">
-                                <core:icon
-                                    identifier="{f:if(condition:'{direction} == \'ASC\'', then:'actions-sort-amount-up', else:'actions-sort-amount-down')}"
-                                    size="small" />
+                                <f:then>
+                                    <f:if condition="{direction} == 'ASC'">
+                                        <f:then>
+                                            <core:icon identifier="actions-sort-amount-up" size="small" />
+                                        </f:then>
+                                        <f:else>
+                                            <core:icon identifier="actions-sort-amount-down" size="small" />
+                                        </f:else>
+                                    </f:if>
+                                </f:then>
                             </f:if>
-                        </be:link.route>
+                        </f:link.action>
                     </th>
                     <th>
-                        <be:link.route route="spark_dms_document"
-                            parameters="{filter: filter, sort: 'registry_number', direction: '{f:if(condition:\"
-                            {sort}==\'registry_number\' && {direction}==\'ASC\'\", then:\"desc\", else:\"asc\")}'}">
+                        <f:link.action action="list"
+                            arguments="{filter: filter, sort: 'registry_number', direction: '{f:if(condition:\"
+                            {sort}==\'registry_number\'\", then:\"{f:if(condition:\"{direction}==\'ASC\'\",
+                            then:\"desc\", else:\"asc\")}\", else:\"asc\")}'}">
                             Registry #
                             <f:if condition="{sort} == 'registry_number'">
-                                <core:icon
-                                    identifier="{f:if(condition:'{direction} == \'ASC\'', then:'actions-sort-amount-up', else:'actions-sort-amount-down')}"
-                                    size="small" />
+                                <f:then>
+                                    <f:if condition="{direction} == 'ASC'">
+                                        <f:then>
+                                            <core:icon identifier="actions-sort-amount-up" size="small" />
+                                        </f:then>
+                                        <f:else>
+                                            <core:icon identifier="actions-sort-amount-down" size="small" />
+                                        </f:else>
+                                    </f:if>
+                                </f:then>
                             </f:if>
-                        </be:link.route>
+                        </f:link.action>
                     </th>
                     <th>
                         <f:translate key="tx_sparkdms_domain_model_document.type" default="Type" />
                     </th>
                     <th>Category</th>
                     <th>
-                        <be:link.route route="spark_dms_document"
-                            parameters="{filter: filter, sort: 'document_date', direction: '{f:if(condition:\"
-                            {sort}==\'document_date\' && {direction}==\'ASC\'\", then:\"desc\", else:\"asc\")}'}">
+                        <f:link.action action="list"
+                            arguments="{filter: filter, sort: 'document_date', direction: '{f:if(condition:\"
+                            {sort}==\'document_date\'\", then:\"{f:if(condition:\"{direction}==\'ASC\'\", then:\"desc\",
+                            else:\"asc\")}\", else:\"asc\")}'}">
                             <f:translate key="tx_sparkdms_domain_model_document.document_date" default="Doc Date" />
                             <f:if condition="{sort} == 'document_date'">
-                                <core:icon
-                                    identifier="{f:if(condition:'{direction} == \'ASC\'', then:'actions-sort-amount-up', else:'actions-sort-amount-down')}"
-                                    size="small" />
+                                <f:then>
+                                    <f:if condition="{direction} == 'ASC'">
+                                        <f:then>
+                                            <core:icon identifier="actions-sort-amount-up" size="small" />
+                                        </f:then>
+                                        <f:else>
+                                            <core:icon identifier="actions-sort-amount-down" size="small" />
+                                        </f:else>
+                                    </f:if>
+                                </f:then>
                             </f:if>
-                        </be:link.route>
+                        </f:link.action>
                     </th>
                     <th>
-                        <be:link.route route="spark_dms_document"
-                            parameters="{filter: filter, sort: 'tstamp', direction: '{f:if(condition:\"
-                            {sort}==\'tstamp\' && {direction}==\'ASC\'\", then:\"desc\", else:\"asc\")}'}">
+                        <f:link.action action="list"
+                            arguments="{filter: filter, sort: 'tstamp', direction: '{f:if(condition:\"
+                            {sort}==\'tstamp\'\", then:\"{f:if(condition:\"{direction}==\'ASC\'\", then:\"desc\",
+                            else:\"asc\")}\", else:\"asc\")}'}">
                             Modified
                             <f:if condition="{sort} == 'tstamp'">
-                                <core:icon
-                                    identifier="{f:if(condition:'{direction} == \'ASC\'', then:'actions-sort-amount-up', else:'actions-sort-amount-down')}"
-                                    size="small" />
+                                <f:then>
+                                    <f:if condition="{direction} == 'ASC'">
+                                        <f:then>
+                                            <core:icon identifier="actions-sort-amount-up" size="small" />
+                                        </f:then>
+                                        <f:else>
+                                            <core:icon identifier="actions-sort-amount-down" size="small" />
+                                        </f:else>
+                                    </f:if>
+                                </f:then>
                             </f:if>
-                        </be:link.route>
+                        </f:link.action>
                     </th>
                     <th>Actions</th>
                 </tr>

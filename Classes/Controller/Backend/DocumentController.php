@@ -8,8 +8,8 @@ use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Backend\Routing\UriBuilder as BackendUriBuilder;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Site\SiteFinder;
@@ -69,9 +69,12 @@ class DocumentController extends ActionController
     {
         $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
         
-        // Get filter and sort from request
+        // Get filter and sort from request (POST or GET)
         $queryParams = $this->request->getQueryParams();
-        $filter = $queryParams['filter'] ?? [];
+        $postParams = $this->request->getParsedBody() ?? [];
+        
+        // Filter can come from POST (form submit) or GET (sort links)
+        $filter = $postParams['filter'] ?? $queryParams['filter'] ?? [];
         $sort = $queryParams['sort'] ?? 'tstamp';
         $direction = $queryParams['direction'] ?? 'desc';
         
@@ -95,7 +98,7 @@ class DocumentController extends ActionController
         // Storage PID constraint
         if ($storagePid > 0) {
             $queryBuilder->andWhere(
-                $queryBuilder->expr()->eq('d.pid', $queryBuilder->createNamedParameter($storagePid, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('d.pid', $queryBuilder->createNamedParameter($storagePid, Connection::PARAM_INT))
             );
         }
         
@@ -119,7 +122,7 @@ class DocumentController extends ActionController
         // Filter: Type
         if (!empty($filter['type'])) {
             $queryBuilder->andWhere(
-                $queryBuilder->expr()->eq('d.type', $queryBuilder->createNamedParameter((int)$filter['type'], \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('d.type', $queryBuilder->createNamedParameter((int)$filter['type'], Connection::PARAM_INT))
             );
         }
         
@@ -133,7 +136,7 @@ class DocumentController extends ActionController
                     $queryBuilder->expr()->eq('mm.uid_local', $queryBuilder->quoteIdentifier('d.uid'))
                 )
                 ->andWhere(
-                    $queryBuilder->expr()->eq('mm.uid_foreign', $queryBuilder->createNamedParameter((int)$filter['category'], \PDO::PARAM_INT))
+                    $queryBuilder->expr()->eq('mm.uid_foreign', $queryBuilder->createNamedParameter((int)$filter['category'], Connection::PARAM_INT))
                 )
                 ->groupBy('d.uid'); // Prevent duplicates from MM join
         }
@@ -143,7 +146,7 @@ class DocumentController extends ActionController
             $dateFrom = strtotime($filter['dateFrom']);
             if ($dateFrom) {
                 $queryBuilder->andWhere(
-                    $queryBuilder->expr()->gte('d.document_date', $queryBuilder->createNamedParameter($dateFrom, \PDO::PARAM_INT))
+                    $queryBuilder->expr()->gte('d.document_date', $queryBuilder->createNamedParameter($dateFrom, Connection::PARAM_INT))
                 );
             }
         }
@@ -151,7 +154,7 @@ class DocumentController extends ActionController
             $dateTo = strtotime($filter['dateTo'] . ' 23:59:59');
             if ($dateTo) {
                 $queryBuilder->andWhere(
-                    $queryBuilder->expr()->lte('d.document_date', $queryBuilder->createNamedParameter($dateTo, \PDO::PARAM_INT))
+                    $queryBuilder->expr()->lte('d.document_date', $queryBuilder->createNamedParameter($dateTo, Connection::PARAM_INT))
                 );
             }
         }
