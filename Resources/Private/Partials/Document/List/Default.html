@@ -5,6 +5,17 @@
     Author: Ernedin Zajko <ezajko@root.ba>
 --></f:comment>
 
+<f:comment><!-- Frontend Filter (if enabled in settings) --></f:comment>
+<f:if condition="{settings.view.frontEndFilter}">
+    <f:render partial="Document/List/Filter" arguments="{
+        filter: filter,
+        availableCategories: availableCategories,
+        availableTypes: availableTypes,
+        availableYears: availableYears,
+        settings: settings
+    }" />
+</f:if>
+
 <div class="spark-dms-list spark-dms-list--default">
     <f:if condition="{documents}">
         <f:then>
