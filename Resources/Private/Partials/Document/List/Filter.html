@@ -1,0 +1,53 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<!--
+    Frontend Filter Partial for DMS List
+    Displays filter controls for search, category, type, and year.
+    @author Ernedin Zajko <ezajko@root.ba>
+-->
+<div class="dms-filter mb-5 p-4 bg-light rounded shadow-sm">
+    <f:form action="list" method="get" class="row g-3 px-2">
+        <!-- Keyword Search -->
+        <div class="col-md-3">
+            <label for="dms-filter-search" class="form-label fw-bold">Search</label>
+            <f:form.textfield name="filter[search]" id="dms-filter-search" value="{filter.search}" class="form-control"
+                placeholder="Search title..." />
+        </div>
+
+        <!-- Category Filter -->
+        <f:if condition="{availableCategories}">
+            <div class="col-md-3">
+                <label for="dms-filter-category" class="form-label fw-bold">Category</label>
+                <f:form.select name="filter[category]" id="dms-filter-category" options="{availableCategories}"
+                    optionValueField="uid" optionLabelField="title" prependOptionLabel="- All Categories -"
+                    prependOptionValue="" value="{filter.category}" class="form-select" />
+            </div>
+        </f:if>
+
+        <!-- Type Filter -->
+        <f:if condition="{availableTypes}">
+            <div class="col-md-2">
+                <label for="dms-filter-type" class="form-label fw-bold">Type</label>
+                <f:form.select name="filter[type]" id="dms-filter-type" options="{availableTypes}"
+                    optionValueField="uid" optionLabelField="title" prependOptionLabel="- All Types -"
+                    prependOptionValue="" value="{filter.type}" class="form-select" />
+            </div>
+        </f:if>
+
+        <!-- Year Filter -->
+        <f:if condition="{availableYears}">
+            <div class="col-md-2">
+                <label for="dms-filter-year" class="form-label fw-bold">Year</label>
+                <f:form.select name="filter[year]" id="dms-filter-year" options="{availableYears}"
+                    prependOptionLabel="- All Years -" prependOptionValue="" value="{filter.year}"
+                    class="form-select" />
+            </div>
+        </f:if>
+
+        <!-- Submit Button -->
+        <div class="col-md-2 d-flex align-items-end">
+            <f:form.submit value="Applied Filters" class="btn btn-primary w-100" />
+        </div>
+    </f:form>
+</div>
+
+</html>

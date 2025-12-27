@@ -3,7 +3,7 @@
 <f:section name="Main">
     <f:if condition="{document}">
         <f:then>
-            <f:variable name="viewType" value="{settings.viewType -> f:or(alternative: 'Default')}" />
+            <f:variable name="viewType" value="{settings.view.viewType -> f:or(alternative: 'Default')}" />
             <f:render partial="Document/Show/{viewType}"
                 arguments="{document: document, settings: settings, sortedVersions: sortedVersions}" optional="true">
                 <f:comment><!-- Fallback if specific view type doesn't exist --></f:comment>

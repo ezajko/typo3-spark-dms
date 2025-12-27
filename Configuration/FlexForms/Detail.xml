@@ -9,14 +9,14 @@
                 <type>array</type>
                 <el>
                     <!-- VIEW TYPE (options added via PageTS) -->
-                    <settings.viewType>
+                    <settings.view.viewType>
                         <label>View Type</label>
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
                             <items></items>
                         </config>
-                    </settings.viewType>
+                    </settings.view.viewType>
                 </el>
             </ROOT>
         </sDEF>

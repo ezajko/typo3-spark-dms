@@ -8,6 +8,7 @@ use EtfUnsa\SparkDms\Domain\Model\Dto\DocumentDemand;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Repository for Document entities with demand-based filtering
@@ -68,6 +69,22 @@ class DocumentRepository extends Repository
         // Date range: To
         if ($demand->getDateTo() !== null) {
             $constraints[] = $query->lessThanOrEqual('documentDate', $demand->getDateTo());
+        }
+
+        // Allowed Categories (FlexForm constraint - document must be in one of these)
+        $allowedCategories = $demand->getAllowedCategories();
+        if (!empty($allowedCategories)) {
+            $categoryConstraints = [];
+            foreach ($allowedCategories as $categoryUid) {
+                $categoryConstraints[] = $query->contains('category', $categoryUid);
+            }
+            $constraints[] = $query->logicalOr(...$categoryConstraints);
+        }
+
+        // Allowed Types (FlexForm constraint - document must be one of these types)
+        $allowedTypes = $demand->getAllowedTypes();
+        if (!empty($allowedTypes)) {
+            $constraints[] = $query->in('type', $allowedTypes);
         }
 
         // Apply constraints
@@ -136,5 +153,34 @@ class DocumentRepository extends Repository
         }
 
         return $query->execute();
+    }
+    /**
+     * Get all unique years from documentDate for filtering
+     * 
+     * @return array<int>
+     */
+    public function findAllYears(): array
+    {
+        $queryBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_sparkdms_domain_model_document');
+        
+        $years = $queryBuilder
+            ->select('document_date')
+            ->from('tx_sparkdms_domain_model_document')
+            ->where($queryBuilder->expr()->gt('document_date', 0))
+            ->groupBy('document_date')
+            ->orderBy('document_date', 'DESC')
+            ->executeQuery()
+            ->fetchAllAssociative();
+
+        $uniqueYears = [];
+        foreach ($years as $row) {
+            $year = (int)date('Y', (int)$row['document_date']);
+            if ($year > 0 && !in_array($year, $uniqueYears, true)) {
+                $uniqueYears[] = $year;
+            }
+        }
+        
+        return $uniqueYears;
     }
 }

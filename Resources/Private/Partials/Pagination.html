@@ -6,8 +6,9 @@
             <f:if condition="{pagination.previousPageNumber}">
                 <f:then>
                     <li class="page-item">
-                        <f:link.action action="list" arguments="{currentPage: pagination.previousPageNumber}"
-                            class="page-link" title="Previous">
+                        <f:link.action action="list"
+                            arguments="{currentPage: pagination.previousPageNumber, filter: filter}" class="page-link"
+                            title="Previous">
                             <i class="bi bi-chevron-left"></i>
                         </f:link.action>
                     </li>
@@ -18,11 +19,10 @@
                     </li>
                 </f:else>
             </f:if>
-
-            <f:comment><!-- Use built-in logic for SlidingWindow to get page numbers --></f:comment>
+            ...
             <f:for each="{pagination.allPageNumbers}" as="page">
                 <li class="page-item {f:if(condition: '{page} == {paginator.currentPageNumber}', then: 'active')}">
-                    <f:link.action action="list" arguments="{currentPage: page}" class="page-link">
+                    <f:link.action action="list" arguments="{currentPage: page, filter: filter}" class="page-link">
                         {page}
                     </f:link.action>
                 </li>
@@ -32,8 +32,9 @@
             <f:if condition="{pagination.nextPageNumber}">
                 <f:then>
                     <li class="page-item">
-                        <f:link.action action="list" arguments="{currentPage: pagination.nextPageNumber}"
-                            class="page-link" title="Next">
+                        <f:link.action action="list"
+                            arguments="{currentPage: pagination.nextPageNumber, filter: filter}" class="page-link"
+                            title="Next">
                             <i class="bi bi-chevron-right"></i>
                         </f:link.action>
                     </li>

@@ -6,14 +6,14 @@
     Author: Ernedin Zajko <ezajko@root.ba>
 --></f:comment>
 
-<f:variable name="viewType" value="{settings.viewType -> f:or(alternative: 'List')}" />
+<f:variable name="viewType" value="{settings.view.viewType -> f:or(alternative: 'List')}" />
 
 <f:render partial="Document/List/{viewType}"
-    arguments="{documents: documents, settings: settings, detailPid: detailPid, pagination: pagination, paginator: paginator}"
+    arguments="{documents: documents, settings: settings, detailPid: detailPid, pagination: pagination, paginator: paginator, filter: filter, availableCategories: availableCategories, availableTypes: availableTypes, availableYears: availableYears}"
     optional="true">
     <f:comment><!-- Fallback to default List view --></f:comment>
     <f:render partial="Document/List/List"
-        arguments="{documents: documents, settings: settings, detailPid: detailPid, pagination: pagination, paginator: paginator}"
+        arguments="{documents: documents, settings: settings, detailPid: detailPid, pagination: pagination, paginator: paginator, filter: filter, availableCategories: availableCategories, availableTypes: availableTypes, availableYears: availableYears}"
         optional="true">
         <div class="alert alert-warning">
             Template partial "Partials/Document/List/{viewType}.html" (or fallback List/List.html) not found.

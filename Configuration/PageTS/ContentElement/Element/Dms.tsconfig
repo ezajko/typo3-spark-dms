@@ -16,7 +16,7 @@
 # --------------------------------------------------------------------------
 # List Plugin (Pi1)
 # --------------------------------------------------------------------------
-TCEFORM.tt_content.pi_flexform.sparkdms_pi1.sDEF.settings\.viewType {
+TCEFORM.tt_content.pi_flexform.sparkdms_pi1.sDEF.settings\.view\.viewType {
     addItems {
         Default = Default
         Simple = Simple / Plain
@@ -28,7 +28,7 @@ TCEFORM.tt_content.pi_flexform.sparkdms_pi1.sDEF.settings\.viewType {
 # --------------------------------------------------------------------------
 # Detail Plugin (Pi2)
 # --------------------------------------------------------------------------
-TCEFORM.tt_content.pi_flexform.sparkdms_pi2.sDEF.settings\.viewType {
+TCEFORM.tt_content.pi_flexform.sparkdms_pi2.sDEF.settings\.view\.viewType {
     addItems {
         Default = Default
         Simple = Simple / Plain
