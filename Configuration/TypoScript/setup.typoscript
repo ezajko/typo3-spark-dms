@@ -11,6 +11,28 @@ plugin.tx_sparkdms_pi1 {
     persistence {
         storagePid = {$plugin.tx_sparkdms_pi1.persistence.storagePid}
     }
+    # Settings structure for FlexForm override
+    # Defines expected hierarchy - FlexForm values will be merged here
+    settings {
+        view {
+            viewType = Default
+            frontEndFilter = 0
+            detailPid =
+            pagination {
+                limit = 0
+                itemsPerPage = 10
+            }
+        }
+        filter {
+            selectedDocuments =
+            documentTypes =
+            documentCategories =
+            dateRange {
+                dateFrom = 0
+                dateTo = 0
+            }
+        }
+    }
 }
 
 
