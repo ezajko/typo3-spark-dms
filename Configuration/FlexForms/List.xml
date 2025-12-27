@@ -57,7 +57,7 @@
                     </settings.view.detailPid>
 
                     <!-- SELECTED DOCUMENTS (Manual Selection) -->
-                    <settings.selectedDocuments>
+                    <settings.filter.selectedDocuments>
                         <label>Select Specific Documents (overrides filters)</label>
                         <config>
                             <type>group</type>
@@ -66,7 +66,7 @@
                             <maxitems>99</maxitems>
                             <minitems>0</minitems>
                         </config>
-                    </settings.selectedDocuments>
+                    </settings.filter.selectedDocuments>
                     
                     <!-- FILTER: Document Types -->
                     <settings.filter.documentTypes>

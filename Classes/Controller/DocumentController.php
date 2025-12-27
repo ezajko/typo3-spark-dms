@@ -50,7 +50,7 @@ class DocumentController extends ActionController
         // - settings.view.detailPid         (int: page UID)
         // - settings.view.pagination.limit  (int: max total items, 0=unlimited)
         // - settings.view.pagination.itemsPerPage (int: items per page)
-        // - settings.selectedDocuments      (csv: document UIDs)
+        // - settings.filter.selectedDocuments   (csv: document UIDs, overrides filters)
         // - settings.filter.documentTypes   (csv: type UIDs)
         // - settings.filter.documentCategories (csv: category UIDs)
         // - settings.filter.dateRange.dateFrom (timestamp)
