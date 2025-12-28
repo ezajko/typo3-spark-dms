@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2025-01-01T00:00:00Z" product-name="spark_dms">
+        <header/>
+        <body>
+            <!-- General -->
+            <trans-unit id="general.documents">
+                <source>Documents</source>
+            </trans-unit>
+            <trans-unit id="general.document">
+                <source>Document</source>
+            </trans-unit>
+            <trans-unit id="general.no_documents">
+                <source>No documents found.</source>
+            </trans-unit>
+            <trans-unit id="general.download">
+                <source>Download</source>
+            </trans-unit>
+            <trans-unit id="general.details">
+                <source>Details</source>
+            </trans-unit>
+            <trans-unit id="general.back">
+                <source>Back</source>
+            </trans-unit>
+
+            <!-- List View -->
+            <trans-unit id="list.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="list.type">
+                <source>Type</source>
+            </trans-unit>
+            <trans-unit id="list.date">
+                <source>Date</source>
+            </trans-unit>
+            <trans-unit id="list.category">
+                <source>Category</source>
+            </trans-unit>
+            <trans-unit id="list.registry_number">
+                <source>Registry #</source>
+            </trans-unit>
+
+            <!-- Detail View -->
+            <trans-unit id="detail.document_date">
+                <source>Document Date</source>
+            </trans-unit>
+            <trans-unit id="detail.registry_number">
+                <source>Registry Number</source>
+            </trans-unit>
+            <trans-unit id="detail.type">
+                <source>Type</source>
+            </trans-unit>
+            <trans-unit id="detail.categories">
+                <source>Categories</source>
+            </trans-unit>
+            <trans-unit id="detail.description">
+                <source>Description</source>
+            </trans-unit>
+            <trans-unit id="detail.versions">
+                <source>Versions</source>
+            </trans-unit>
+            <trans-unit id="detail.version_history">
+                <source>Version History</source>
+            </trans-unit>
+            <trans-unit id="detail.current_version">
+                <source>Current Version</source>
+            </trans-unit>
+            <trans-unit id="detail.related_documents">
+                <source>Related Documents</source>
+            </trans-unit>
+            <trans-unit id="detail.protected">
+                <source>Protected</source>
+            </trans-unit>
+            <trans-unit id="detail.login_required">
+                <source>Login required to download this document.</source>
+            </trans-unit>
+
+            <!-- Filter Form -->
+            <trans-unit id="filter.search">
+                <source>Search</source>
+            </trans-unit>
+            <trans-unit id="filter.search.placeholder">
+                <source>Search title...</source>
+            </trans-unit>
+            <trans-unit id="filter.category">
+                <source>Category</source>
+            </trans-unit>
+            <trans-unit id="filter.category.all">
+                <source>- All Categories -</source>
+            </trans-unit>
+            <trans-unit id="filter.type">
+                <source>Type</source>
+            </trans-unit>
+            <trans-unit id="filter.type.all">
+                <source>- All Types -</source>
+            </trans-unit>
+            <trans-unit id="filter.year">
+                <source>Year</source>
+            </trans-unit>
+            <trans-unit id="filter.year.all">
+                <source>- All Years -</source>
+            </trans-unit>
+            <trans-unit id="filter.submit">
+                <source>Apply Filters</source>
+            </trans-unit>
+            <trans-unit id="filter.reset">
+                <source>Reset</source>
+            </trans-unit>
+
+            <!-- Pagination -->
+            <trans-unit id="pagination.previous">
+                <source>Previous</source>
+            </trans-unit>
+            <trans-unit id="pagination.next">
+                <source>Next</source>
+            </trans-unit>
+            <trans-unit id="pagination.first">
+                <source>First</source>
+            </trans-unit>
+            <trans-unit id="pagination.last">
+                <source>Last</source>
+            </trans-unit>
+            <trans-unit id="pagination.page">
+                <source>Page</source>
+            </trans-unit>
+            <trans-unit id="pagination.of">
+                <source>of</source>
+            </trans-unit>
+
+            <!-- FlexForm -->
+            <trans-unit id="flexform.view.viewType">
+                <source>View Type</source>
+            </trans-unit>
+            <trans-unit id="flexform.view.frontEndFilter">
+                <source>Show Frontend Filter</source>
+            </trans-unit>
+            <trans-unit id="flexform.view.detailPid">
+                <source>Detail Page</source>
+            </trans-unit>
+            <trans-unit id="flexform.pagination.limit">
+                <source>Max Items (total limit)</source>
+            </trans-unit>
+            <trans-unit id="flexform.pagination.itemsPerPage">
+                <source>Items Per Page</source>
+            </trans-unit>
+            <trans-unit id="flexform.filter.documentTypes">
+                <source>Filter by Document Types</source>
+            </trans-unit>
+            <trans-unit id="flexform.filter.documentCategories">
+                <source>Filter by Document Categories</source>
+            </trans-unit>
+            <trans-unit id="flexform.filter.dateFrom">
+                <source>Date From</source>
+            </trans-unit>
+            <trans-unit id="flexform.filter.dateTo">
+                <source>Date To</source>
+            </trans-unit>
+            <trans-unit id="flexform.filter.selectedDocuments">
+                <source>Select Specific Documents (overrides filters)</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

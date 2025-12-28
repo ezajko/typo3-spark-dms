@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2025-01-01T00:00:00Z" product-name="spark_dms">
+        <header/>
+        <body>
+            <!-- Document Model -->
+            <trans-unit id="tx_sparkdms_domain_model_document">
+                <source>Document</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.registry_number">
+                <source>Registry Number</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.description">
+                <source>Description</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.type">
+                <source>Document Type</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.category">
+                <source>Category</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.document_date">
+                <source>Document Date</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.is_protected">
+                <source>Protected (Login Required)</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.uuid">
+                <source>UUID</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.versions">
+                <source>File Versions</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.related_documents">
+                <source>Related Documents</source>
+            </trans-unit>
+
+            <!-- Document Version Model -->
+            <trans-unit id="tx_sparkdms_domain_model_document_version">
+                <source>Document Version</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document_version.version_number">
+                <source>Version Number</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document_version.file">
+                <source>File</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document_version.created_at">
+                <source>Created At</source>
+            </trans-unit>
+
+            <!-- Document Type Model -->
+            <trans-unit id="tx_sparkdms_domain_model_document_type">
+                <source>Document Type</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document_type.title">
+                <source>Title</source>
+            </trans-unit>
+
+            <!-- Document Category Model -->
+            <trans-unit id="tx_sparkdms_domain_model_document_category">
+                <source>Document Category</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document_category.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document_category.parent">
+                <source>Parent Category</source>
+            </trans-unit>
+
+            <!-- TCA Tabs -->
+            <trans-unit id="tabs.general">
+                <source>General</source>
+            </trans-unit>
+            <trans-unit id="tabs.versions">
+                <source>Versions</source>
+            </trans-unit>
+            <trans-unit id="tabs.related">
+                <source>Related</source>
+            </trans-unit>
+            <trans-unit id="tabs.language">
+                <source>Language</source>
+            </trans-unit>
+            <trans-unit id="tabs.access">
+                <source>Access</source>
+            </trans-unit>
+
+            <!-- Misc -->
+            <trans-unit id="select.type.placeholder">
+                <source>-- Select Type --</source>
+            </trans-unit>
+            <trans-unit id="button.add_version">
+                <source>Add Version</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

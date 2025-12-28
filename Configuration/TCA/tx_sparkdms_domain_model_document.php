@@ -1,8 +1,16 @@
 <?php
 
+/**
+ * TCA configuration for Document model
+ * 
+ * @author Ernedin Zajko <ezajko@root.ba>
+ */
+
+$ll = 'LLL:EXT:spark_dms/Resources/Private/Language/locallang_db.xlf:';
+
 return [
     'ctrl' => [
-        'title' => 'Document',
+        'title' => $ll . 'tx_sparkdms_domain_model_document',
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -17,7 +25,7 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'searchFields' => 'title',
+        'searchFields' => 'title,registry_number,description',
         'iconfile' => 'EXT:spark_dms/Resources/Public/Icons/Document.svg',
         'security' => [
             'ignorePageTypeRestriction' => true,
@@ -25,11 +33,11 @@ return [
     ],
     'types' => [
         '1' => ['showitem' => '
-            --div--;General, title, registry_number, type, category, document_date, is_protected, uuid,
-            --div--;Versions, versions,
-            --div--;Related, related_documents,
-            --div--;Language, sys_language_uid, l10n_parent, l10n_diffsource,
-            --div--;Access, hidden, starttime, endtime,
+            --div--;' . $ll . 'tabs.general, title, registry_number, description, type, category, document_date, is_protected, uuid,
+            --div--;' . $ll . 'tabs.versions, versions,
+            --div--;' . $ll . 'tabs.related, related_documents,
+            --div--;' . $ll . 'tabs.language, sys_language_uid, l10n_parent, l10n_diffsource,
+            --div--;' . $ll . 'tabs.access, hidden, starttime, endtime,
         '],
     ],
     'columns' => [
@@ -73,23 +81,33 @@ return [
         // Custom Fields
         'title' => [
             'exclude' => true,
-            'label' => 'Title',
+            'label' => $ll . 'tx_sparkdms_domain_model_document.title',
             'config' => ['type' => 'input', 'eval' => 'trim', 'required' => true],
         ],
         'registry_number' => [
             'exclude' => true,
-            'label' => 'Registry Number (Djelovodni broj)',
+            'label' => $ll . 'tx_sparkdms_domain_model_document.registry_number',
             'config' => ['type' => 'input', 'eval' => 'trim', 'size' => 30],
+        ],
+        'description' => [
+            'exclude' => true,
+            'label' => $ll . 'tx_sparkdms_domain_model_document.description',
+            'config' => [
+                'type' => 'text',
+                'cols' => 40,
+                'rows' => 5,
+                'enableRichtext' => true,
+            ],
         ],
         'type' => [
             'exclude' => true,
-            'label' => 'Document Type',
+            'label' => $ll . 'tx_sparkdms_domain_model_document.type',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'foreign_table' => 'tx_sparkdms_domain_model_document_type',
                 'items' => [
-                    ['label' => '-- Select Type --', 'value' => 0],
+                    ['label' => $ll . 'select.type.placeholder', 'value' => 0],
                 ],
                 'minitems' => 0,
                 'maxitems' => 1,
@@ -97,7 +115,7 @@ return [
         ],
         'category' => [
             'exclude' => true,
-            'label' => 'Context Category',
+            'label' => $ll . 'tx_sparkdms_domain_model_document.category',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectTree',
@@ -113,7 +131,7 @@ return [
         ],
         'document_date' => [
             'exclude' => true,
-            'label' => 'Document Date',
+            'label' => $ll . 'tx_sparkdms_domain_model_document.document_date',
             'config' => [
                 'type' => 'datetime',
                 'format' => 'date',
@@ -122,12 +140,12 @@ return [
         ],
         'is_protected' => [
             'exclude' => true,
-            'label' => 'Protected (Auth Only)',
+            'label' => $ll . 'tx_sparkdms_domain_model_document.is_protected',
             'config' => ['type' => 'check', 'renderType' => 'checkboxToggle'],
         ],
         'versions' => [
             'exclude' => true,
-            'label' => 'File Versions',
+            'label' => $ll . 'tx_sparkdms_domain_model_document.versions',
             'config' => [
                 'type' => 'inline',
                 'foreign_table' => 'tx_sparkdms_domain_model_document_version',
@@ -139,18 +157,18 @@ return [
                     'expandSingle' => true,
                     'useSortable' => true,
                     'showNewRecordLink' => true,
-                    'newRecordLinkTitle' => 'Add Version',
+                    'newRecordLinkTitle' => $ll . 'button.add_version',
                 ],
             ],
         ],
         'uuid' => [
             'exclude' => true,
-            'label' => 'UUID',
+            'label' => $ll . 'tx_sparkdms_domain_model_document.uuid',
             'config' => ['type' => 'uuid'],
         ],
         'related_documents' => [
             'exclude' => true,
-            'label' => 'Related Documents',
+            'label' => $ll . 'tx_sparkdms_domain_model_document.related_documents',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectMultipleSideBySide',

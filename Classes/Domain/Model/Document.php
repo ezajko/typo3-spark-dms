@@ -17,6 +17,7 @@ class Document extends AbstractEntity
     protected string $registryNumber = '';
     protected string $uuid = '';
     protected bool $isProtected = false;
+    protected string $description = '';
     protected ?DateTime $documentDate = null;
     
     protected ?DocumentType $type = null;
@@ -82,6 +83,16 @@ class Document extends AbstractEntity
     public function setIsProtected(bool $isProtected): void
     {
         $this->isProtected = $isProtected;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
     }
 
     public function getDocumentDate(): ?DateTime
