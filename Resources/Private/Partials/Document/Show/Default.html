@@ -119,6 +119,36 @@
         </section>
     </f:if>
 
+    <f:comment><!-- Related Documents --></f:comment>
+    <f:if condition="{document.relatedDocuments -> f:count()}">
+        <section class="mb-4">
+            <h5>Related Documents</h5>
+            <ul class="list-group">
+                <f:for each="{document.relatedDocuments}" as="relatedDoc">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="bi bi-file-earmark-text me-2"></i>
+                            <f:if condition="{settings.view.detailPid}">
+                                <f:then>
+                                    <f:link.action action="show" arguments="{document: relatedDoc}"
+                                        pageUid="{settings.view.detailPid}">
+                                        {relatedDoc.title}
+                                    </f:link.action>
+                                </f:then>
+                                <f:else>
+                                    {relatedDoc.title}
+                                </f:else>
+                            </f:if>
+                        </div>
+                        <f:if condition="{relatedDoc.type}">
+                            <span class="badge bg-secondary">{relatedDoc.type.title}</span>
+                        </f:if>
+                    </li>
+                </f:for>
+            </ul>
+        </section>
+    </f:if>
+
     <f:comment><!-- Metadata Footer --></f:comment>
     <footer class="border-top pt-3 text-muted small">
         <f:if condition="{document.uuid}">

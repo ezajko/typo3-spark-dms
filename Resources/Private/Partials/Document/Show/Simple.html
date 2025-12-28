@@ -33,6 +33,26 @@
         </div>
     </f:if>
 
+    <f:if condition="{document.relatedDocuments -> f:count()}">
+        <p>
+            Related:
+            <f:for each="{document.relatedDocuments}" as="relatedDoc" iteration="iter">
+                <f:if condition="{settings.view.detailPid}">
+                    <f:then>
+                        <f:link.action action="show" arguments="{document: relatedDoc}"
+                            pageUid="{settings.view.detailPid}">
+                            {relatedDoc.title}
+                        </f:link.action>
+                    </f:then>
+                    <f:else>
+                        {relatedDoc.title}
+                    </f:else>
+                </f:if>
+                <f:if condition="{iter.isLast} == 0">, </f:if>
+            </f:for>
+        </p>
+    </f:if>
+
     <f:if condition="{document.file}">
         <p>
             <f:link.action action="download" arguments="{document: document}">
