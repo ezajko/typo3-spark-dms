@@ -27,6 +27,12 @@
         </p>
     </f:if>
 
+    <f:if condition="{document.description}">
+        <div class="dms-description mb-3">
+            <f:format.html>{document.description}</f:format.html>
+        </div>
+    </f:if>
+
     <f:if condition="{document.file}">
         <p>
             <f:link.action action="download" arguments="{document: document}">

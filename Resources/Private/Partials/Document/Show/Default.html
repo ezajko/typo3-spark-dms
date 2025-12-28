@@ -40,6 +40,16 @@
         </section>
     </f:if>
 
+    <f:comment><!-- Description --></f:comment>
+    <f:if condition="{document.description}">
+        <section class="mb-4">
+            <h5>Description</h5>
+            <div class="dms-description">
+                <f:format.html>{document.description}</f:format.html>
+            </div>
+        </section>
+    </f:if>
+
     <f:comment><!-- Download Section --></f:comment>
     <f:if condition="{document.file}">
         <section class="mb-4">
