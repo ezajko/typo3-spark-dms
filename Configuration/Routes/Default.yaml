@@ -4,6 +4,10 @@ routeEnhancers:
     extension: SparkDms
     plugin: Pi1
     routes:
+      - routePath: '/dms/page/{currentPage}'
+        _controller: 'Document::list'
+        _arguments:
+          currentPage: currentPage
       - routePath: '/dms/{document}/{version}/download'
         _controller: 'Document::download'
         _arguments:
@@ -19,6 +23,10 @@ routeEnhancers:
           document: document
     defaultController: 'Document::list'
     aspects:
+      currentPage:
+        type: StaticRangeMapper
+        start: '1'
+        end: '999'
       document:
         type: PersistedAliasMapper
         tableName: tx_sparkdms_domain_model_document

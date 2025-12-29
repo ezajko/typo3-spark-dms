@@ -16,4 +16,51 @@
     }" />
 </f:if>
 
+<div class="spark-dms-list spark-dms-list--debug">
+    <f:if condition="{paginator.paginatedItems}">
+        <f:then>
+            <h4>Documents ({paginator.numberOfPages} pages, {paginator.count} total)</h4>
+            <table class="table table-sm table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>UID</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Categories</th>
+                        <th>Date</th>
+                        <th>Versions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <f:for each="{paginator.paginatedItems}" as="document">
+                        <tr>
+                            <td>{document.uid}</td>
+                            <td>{document.title}</td>
+                            <td>
+                                <f:if condition="{document.type}">{document.type.title}</f:if>
+                            </td>
+                            <td>
+                                <f:for each="{document.category}" as="cat" iteration="catIter">
+                                    {cat.title}<f:if condition="{catIter.isLast} == 0">, </f:if>
+                                </f:for>
+                            </td>
+                            <td>
+                                <f:format.date format="d.m.Y">{document.documentDate}</f:format.date>
+                            </td>
+                            <td>{document.versions -> f:count()}</td>
+                        </tr>
+                    </f:for>
+                </tbody>
+            </table>
+
+            <f:render partial="Pagination" arguments="{pagination: pagination, paginator: paginator, filter: filter}" />
+        </f:then>
+        <f:else>
+            <div class="alert alert-warning">No documents found.</div>
+        </f:else>
+    </f:if>
+</div>
+
+<hr />
+<h5>Debug Variables</h5>
 <f:debug title="Debug DMS List">{_all}</f:debug>

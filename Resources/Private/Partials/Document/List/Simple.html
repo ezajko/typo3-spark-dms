@@ -17,10 +17,10 @@
 </f:if>
 
 <div class="spark-dms-list spark-dms-list--simple">
-    <f:if condition="{documents}">
+    <f:if condition="{paginator.paginatedItems}">
         <f:then>
             <ul class="list-unstyled">
-                <f:for each="{documents}" as="document">
+                <f:for each="{paginator.paginatedItems}" as="document">
                     <li class="mb-2">
                         <f:if condition="{detailPid}">
                             <f:then>
@@ -47,6 +47,8 @@
                     </li>
                 </f:for>
             </ul>
+
+            <f:render partial="Pagination" arguments="{pagination: pagination, paginator: paginator, filter: filter}" />
         </f:then>
         <f:else>
             <p>No documents found.</p>
