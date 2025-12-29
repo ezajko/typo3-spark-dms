@@ -17,3 +17,8 @@ services:
     resource: '../Classes/Controller/Backend'
     public: true
 
+  # Console commands
+  EtfUnsa\SparkDms\Command\:
+    resource: '../Classes/Command'
+    tags:
+      - { name: 'console.command' }
