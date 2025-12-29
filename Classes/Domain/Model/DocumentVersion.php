@@ -64,6 +64,14 @@ class DocumentVersion extends AbstractEntity
     }
 
     /**
+     * Set creation timestamp
+     */
+    public function setCreatedAt(int $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
      * Check if this is the latest version of the parent document
      */
     public function getIsLatest(): bool

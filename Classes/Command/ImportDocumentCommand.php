@@ -9,6 +9,8 @@ use EtfUnsa\SparkDms\Domain\Model\DocumentVersion;
 use EtfUnsa\SparkDms\Domain\Repository\DocumentRepository;
 use EtfUnsa\SparkDms\Domain\Repository\DocumentCategoryRepository;
 use EtfUnsa\SparkDms\Domain\Repository\DocumentTypeRepository;
+use EtfUnsa\SparkDms\Domain\Repository\DocumentVersionRepository;
+use EtfUnsa\SparkDms\Service\FileOrganizationService;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -39,10 +41,12 @@ class ImportDocumentCommand extends Command
         protected readonly DocumentRepository $documentRepository,
         protected readonly DocumentCategoryRepository $categoryRepository,
         protected readonly DocumentTypeRepository $typeRepository,
+        protected readonly DocumentVersionRepository $versionRepository,
         protected readonly PersistenceManager $persistenceManager,
         protected readonly ResourceFactory $resourceFactory,
         protected readonly StorageRepository $storageRepository,
         protected readonly SiteFinder $siteFinder,
+        protected readonly FileOrganizationService $fileOrganizationService,
     ) {
         parent::__construct();
     }
@@ -223,6 +227,9 @@ class ImportDocumentCommand extends Command
             $this->documentRepository->add($document);
             $this->persistenceManager->persistAll();
 
+            // Organize files from _inbox to structured folders
+            $this->fileOrganizationService->organizeDocumentFiles($document->getUid());
+
             // Output success
             $io->success('Document created successfully!');
             $io->table(
@@ -273,10 +280,16 @@ class ImportDocumentCommand extends Command
 
             // Create new version
             $version = $this->createVersionWithFile($filePath, $document, $document->getPid(), $nextVersionLabel);
+            
+            // Explicitly add version to repository (needed for existing documents)
+            $this->versionRepository->add($version);
             $document->addVersion($version);
 
             // Persist
             $this->persistenceManager->persistAll();
+
+            // Organize files from _inbox to structured folders
+            $this->fileOrganizationService->organizeDocumentFiles($document->getUid());
 
             // Output success
             $io->success('Version added successfully!');
@@ -343,6 +356,7 @@ class ImportDocumentCommand extends Command
         $version->setPid($pid);
         $version->setVersionLabel($versionLabel);
         $version->setUuid($this->generateUuid());
+        $version->setCreatedAt(time()); // Set current timestamp
         $version->setFile($extbaseFileReference);
         $version->setDocument($document);
 
