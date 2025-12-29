@@ -242,3 +242,111 @@ API Reference
 
 For detailed API documentation, refer to the source code in the `Classes/` 
 directory. All public methods are documented with PHPDoc comments.
+
+CLI Commands
+============
+
+Spark DMS provides command-line tools for document management.
+
+dms:import
+----------
+
+Import a new document or add a version to an existing document.
+
+**Create new document:**
+
+.. code-block:: bash
+
+   ddev typo3 dms:import \
+     --file=/path/to/document.pdf \
+     --title="Document Title" \
+     --type=1 \
+     --category=5 --category=8 \
+     --registry-number="DOC-001" \
+     --date=2025-01-15 \
+     --pid=184
+
+**Add new version to existing document:**
+
+.. code-block:: bash
+
+   ddev typo3 dms:import \
+     --file=/path/to/updated.pdf \
+     --document=42 \
+     --version-comment="Updated content"
+
+Options:
+
+- ``--file, -f``: Path to the file (required)
+- ``--title, -t``: Document title (required for new documents)
+- ``--type``: Document type UID
+- ``--category, -c``: Category UID (repeatable for multiple)
+- ``--registry-number, -r``: Registry number
+- ``--date, -d``: Document date (Y-m-d format)
+- ``--description``: Document description
+- ``--pid, -p``: Storage page ID
+- ``--document``: Existing document UID (for adding version)
+- ``--version-comment``: Comment for version
+
+dms:list
+--------
+
+List documents with optional filtering.
+
+.. code-block:: bash
+
+   ddev typo3 dms:list --type=1 --limit=20 --format=table
+
+Options:
+
+- ``--type, -t``: Filter by document type UID
+- ``--category, -c``: Filter by category UID
+- ``--search, -s``: Search in document title
+- ``--limit, -l``: Maximum number of results (default: 50)
+- ``--format, -f``: Output format: table, json, csv (default: table)
+
+dms:export
+----------
+
+Export documents to CSV or JSON file.
+
+.. code-block:: bash
+
+   ddev typo3 dms:export --format=csv --output=/tmp/documents.csv
+
+Options:
+
+- ``--type, -t``: Filter by document type UID
+- ``--category, -c``: Filter by category UID
+- ``--output, -o``: Output file path (default: stdout)
+- ``--format, -f``: Export format: csv, json (default: csv)
+
+File Organization Service
+=========================
+
+:Path: `EtfUnsa\\SparkDms\\Service\\FileOrganizationService`
+
+Automatically organizes uploaded files from ``/_inbox/`` to structured folders:
+
+.. code-block:: text
+
+   /{type-slug}/{year}/{month}/{title-slug}-{uuid}/filename.pdf
+
+Example:
+
+.. code-block:: text
+
+   /odluka/2025/12/annual-report-ab12cd34/report.pdf
+
+The service is triggered:
+
+- Automatically via DataHandler hook when saving documents in backend
+- Directly by CLI import command after creating documents/versions
+
+To manually organize files for a document:
+
+.. code-block:: php
+
+   $fileOrganizationService = GeneralUtility::makeInstance(FileOrganizationService::class);
+   $fileOrganizationService->organizeDocumentFiles($documentUid);
+

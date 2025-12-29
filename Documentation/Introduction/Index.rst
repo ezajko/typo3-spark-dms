@@ -51,6 +51,14 @@ Backend Management
 - **FlexForm Configuration**: Easy configuration through content element settings
 - **Pretty URLs**: Automatic URL routing for clean document URLs
 
+CLI Commands
+------------
+
+- **dms:import**: Import documents and add versions via command line
+- **dms:list**: List documents with filtering and export options
+- **dms:export**: Export documents to CSV or JSON
+- **Bulk Import**: Script for importing from CSV files
+
 Screenshots
 ===========
 
