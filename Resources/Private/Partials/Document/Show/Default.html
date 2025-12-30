@@ -16,7 +16,8 @@
             </f:if>
             <f:if condition="{document.isProtected}">
                 <span class="badge bg-warning text-dark">
-                    <i class="bi bi-lock"></i> Protected
+                    <i class="bi bi-lock"></i>
+                    <f:translate key="detail.protected" />
                 </span>
             </f:if>
             <f:if condition="{document.documentDate}">
@@ -31,7 +32,9 @@
     <f:comment><!-- Categories --></f:comment>
     <f:if condition="{document.category -> f:count()}">
         <section class="mb-4">
-            <h5>Categories</h5>
+            <h5>
+                <f:translate key="detail.categories" />
+            </h5>
             <div class="d-flex gap-2 flex-wrap">
                 <f:for each="{document.category}" as="category">
                     <span class="badge bg-info">{category.title}</span>
@@ -43,7 +46,9 @@
     <f:comment><!-- Description --></f:comment>
     <f:if condition="{document.description}">
         <section class="mb-4">
-            <h5>Description</h5>
+            <h5>
+                <f:translate key="detail.description" />
+            </h5>
             <div class="dms-description">
                 <f:format.html>{document.description}</f:format.html>
             </div>
@@ -56,10 +61,12 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <i class="bi bi-file-earmark-arrow-down"></i> Download
+                        <i class="bi bi-file-earmark-arrow-down"></i>
+                        <f:translate key="general.download" />
                     </h5>
                     <f:link.action action="download" arguments="{document: document}" class="btn btn-primary btn-lg">
-                        <i class="bi bi-download"></i> Download Latest Version
+                        <i class="bi bi-download"></i>
+                        <f:translate key="general.download" />
                     </f:link.action>
                 </div>
             </div>
@@ -69,14 +76,24 @@
     <f:comment><!-- Version History --></f:comment>
     <f:if condition="{sortedVersions -> f:count()}">
         <section class="mb-4">
-            <h5>Version History</h5>
+            <h5>
+                <f:translate key="detail.version_history" />
+            </h5>
             <table class="table table-sm table-striped">
                 <thead>
                     <tr>
-                        <th>Version</th>
-                        <th>Date</th>
-                        <th>File</th>
-                        <th>Actions</th>
+                        <th>
+                            <f:translate key="detail.versions" />
+                        </th>
+                        <th>
+                            <f:translate key="list.date" />
+                        </th>
+                        <th>
+                            <f:translate key="list.file" />
+                        </th>
+                        <th>
+                            <f:translate key="list.actions" />
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,7 +102,9 @@
                             <td>
                                 <span class="badge bg-secondary">{version.displayLabel}</span>
                                 <f:if condition="{version.isLatest}">
-                                    <span class="badge bg-success ms-1">Latest</span>
+                                    <span class="badge bg-success ms-1">
+                                        <f:translate key="detail.current_version" />
+                                    </span>
                                 </f:if>
                             </td>
                             <td>
@@ -100,7 +119,8 @@
                                 <f:if condition="{version.file}">
                                     <f:comment><!-- Direct file link for specific versions --></f:comment>
                                     <f:link.action action="download" arguments="{document: document, version: version}"
-                                        class="btn btn-sm btn-outline-secondary" title="Download this version">
+                                        class="btn btn-sm btn-outline-secondary"
+                                        title="{f:translate(key:'general.download')}">
                                         <i class="bi bi-download"></i>
                                     </f:link.action>
                                 </f:if>
@@ -115,16 +135,30 @@
     <f:comment><!-- Related Documents (bidirectional) --></f:comment>
     <f:if condition="{document.allRelatedDocuments}">
         <section class="mb-4">
-            <h5>Related Documents</h5>
+            <h5>
+                <f:translate key="detail.related_documents" />
+            </h5>
             <table class="table table-striped table-hover table-sm">
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Registry #</th>
-                        <th>Type</th>
-                        <th>Categories</th>
-                        <th>Date</th>
-                        <th>Download</th>
+                        <th>
+                            <f:translate key="list.title" />
+                        </th>
+                        <th>
+                            <f:translate key="list.registry_number" />
+                        </th>
+                        <th>
+                            <f:translate key="list.type" />
+                        </th>
+                        <th>
+                            <f:translate key="list.category" />
+                        </th>
+                        <th>
+                            <f:translate key="list.date" />
+                        </th>
+                        <th>
+                            <f:translate key="general.download" />
+                        </th>
                     </tr>
                 </thead>
                 <tbody>

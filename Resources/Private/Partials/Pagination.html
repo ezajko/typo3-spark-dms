@@ -8,7 +8,7 @@
                     <li class="page-item">
                         <f:link.action action="list"
                             arguments="{currentPage: pagination.previousPageNumber, filter: filter}" class="page-link"
-                            title="Previous">
+                            title="{f:translate(key: 'pagination.previous')}">
                             <i class="bi bi-chevron-left"></i>
                         </f:link.action>
                     </li>
@@ -34,7 +34,7 @@
                     <li class="page-item">
                         <f:link.action action="list"
                             arguments="{currentPage: pagination.nextPageNumber, filter: filter}" class="page-link"
-                            title="Next">
+                            title="{f:translate(key: 'pagination.next')}">
                             <i class="bi bi-chevron-right"></i>
                         </f:link.action>
                     </li>
@@ -48,7 +48,8 @@
         </ul>
 
         <div class="text-center text-muted small mt-2">
-            Showing records {pagination.startRecordNumber} - {pagination.endRecordNumber}
+            <f:translate key="pagination.info"
+                arguments="{0: pagination.startRecordNumber, 1: pagination.endRecordNumber}" />
         </div>
     </nav>
 </f:if>

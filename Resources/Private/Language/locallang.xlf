@@ -39,6 +39,12 @@
             <trans-unit id="list.registry_number">
                 <source>Registry #</source>
             </trans-unit>
+            <trans-unit id="list.actions">
+                <source>Actions</source>
+            </trans-unit>
+            <trans-unit id="list.file">
+                <source>File</source>
+            </trans-unit>
 
             <!-- Detail View -->
             <trans-unit id="detail.document_date">
@@ -125,6 +131,9 @@
             </trans-unit>
             <trans-unit id="pagination.of">
                 <source>of</source>
+            </trans-unit>
+            <trans-unit id="pagination.info">
+                <source>Showing records %1$s - %2$s</source>
             </trans-unit>
 
             <!-- FlexForm -->

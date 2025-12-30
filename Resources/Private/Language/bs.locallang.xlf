@@ -50,6 +50,14 @@
                 <source>Registry #</source>
                 <target>Broj protokola</target>
             </trans-unit>
+            <trans-unit id="list.actions">
+                <source>Actions</source>
+                <target>Akcije</target>
+            </trans-unit>
+            <trans-unit id="list.file">
+                <source>File</source>
+                <target>Fajl</target>
+            </trans-unit>
 
             <!-- Detail View -->
             <trans-unit id="detail.document_date">
@@ -163,6 +171,10 @@
             <trans-unit id="pagination.of">
                 <source>of</source>
                 <target>od</target>
+            </trans-unit>
+            <trans-unit id="pagination.info">
+                <source>Showing records %1$s - %2$s</source>
+                <target>Prikazujem zapise %1$s - %2$s</target>
             </trans-unit>
 
             <!-- FlexForm -->
