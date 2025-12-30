@@ -177,26 +177,12 @@ FlexForm values override these defaults.
 PageTS Configuration
 ====================
 
-Custom View Types
------------------
-
-You can add custom view types to the dropdown using PageTS:
-
-.. code-block:: typoscript
-
-   TCEFORM.tt_content.pi_flexform.sparkdms_pi1.sDEF.settings\.view\.viewType {
-       addItems {
-           MyCustomView = My Custom View
-       }
-   }
-
-Then create a corresponding partial at:
-`Resources/Private/Partials/Document/List/MyCustomView.html`
+Auto-loaded from `Configuration/page.tsconfig`.
 
 Routing Configuration
 =====================
 
-For pretty URLs, add the following to your site's `config.yaml`:
+For pretty URLs, add the following to your site's `config.yaml` (or `sites/my-site/config.yaml`):
 
 .. code-block:: yaml
 
@@ -206,13 +192,13 @@ For pretty URLs, add the following to your site's `config.yaml`:
        extension: SparkDms
        plugin: Pi1
        routes:
-         - routePath: '/document/{document_title}'
+         - routePath: '/document/{document}'
            _controller: 'Document::show'
            _arguments:
-             document_title: document
+             document: document
        defaultController: 'Document::list'
        aspects:
-         document_title:
+         document:
            type: PersistedAliasMapper
            tableName: tx_sparkdms_domain_model_document
-           routeFieldName: path_segment
+           routeFieldName: uid
