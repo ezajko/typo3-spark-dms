@@ -29,22 +29,8 @@ defined('TYPO3') or die();
         ]
     );
 
-
-
-    // Register PageTSConfig for Backend Module View
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-        'module.tx_sparkdms {
-            view {
-                templateRootPaths.0 = EXT:spark_dms/Resources/Private/Templates/
-                partialRootPaths.0 = EXT:spark_dms/Resources/Private/Partials/
-                layoutRootPaths.0 = EXT:spark_dms/Resources/Private/Layouts/
-            }
-        }'
-    );
-
     // DataHandler Hook for file organization after Document save
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['spark_dms'] 
         = \EtfUnsa\SparkDms\Hook\DataHandlerHook::class;
 
 })();
-

@@ -1,0 +1,12 @@
+# PageTSConfig for Spark DMS Backend Module
+# Auto-loaded in TYPO3 13+ from Configuration/page.tsconfig
+#
+# Author: Ernedin Zajko <ezajko@root.ba>
+
+module.tx_sparkdms {
+    view {
+        templateRootPaths.0 = EXT:spark_dms/Resources/Private/Templates/
+        partialRootPaths.0 = EXT:spark_dms/Resources/Private/Partials/
+        layoutRootPaths.0 = EXT:spark_dms/Resources/Private/Layouts/
+    }
+}
