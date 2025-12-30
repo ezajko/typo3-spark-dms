@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="bs" datatype="plaintext" original="messages" date="2025-01-01T00:00:00Z" product-name="spark_dms">
+        <header/>
+        <body>
+            <!-- General -->
+            <trans-unit id="general.documents">
+                <source>Documents</source>
+                <target>Dokumenti</target>
+            </trans-unit>
+            <trans-unit id="general.document">
+                <source>Document</source>
+                <target>Dokument</target>
+            </trans-unit>
+            <trans-unit id="general.no_documents">
+                <source>No documents found.</source>
+                <target>Nema pronađenih dokumenata.</target>
+            </trans-unit>
+            <trans-unit id="general.download">
+                <source>Download</source>
+                <target>Preuzmi</target>
+            </trans-unit>
+            <trans-unit id="general.details">
+                <source>Details</source>
+                <target>Detalji</target>
+            </trans-unit>
+            <trans-unit id="general.back">
+                <source>Back</source>
+                <target>Nazad</target>
+            </trans-unit>
+
+            <!-- List View -->
+            <trans-unit id="list.title">
+                <source>Title</source>
+                <target>Naslov</target>
+            </trans-unit>
+            <trans-unit id="list.type">
+                <source>Type</source>
+                <target>Tip</target>
+            </trans-unit>
+            <trans-unit id="list.date">
+                <source>Date</source>
+                <target>Datum</target>
+            </trans-unit>
+            <trans-unit id="list.category">
+                <source>Category</source>
+                <target>Kategorija</target>
+            </trans-unit>
+            <trans-unit id="list.registry_number">
+                <source>Registry #</source>
+                <target>Broj protokola</target>
+            </trans-unit>
+
+            <!-- Detail View -->
+            <trans-unit id="detail.document_date">
+                <source>Document Date</source>
+                <target>Datum dokumenta</target>
+            </trans-unit>
+            <trans-unit id="detail.registry_number">
+                <source>Registry Number</source>
+                <target>Broj protokola</target>
+            </trans-unit>
+            <trans-unit id="detail.type">
+                <source>Type</source>
+                <target>Tip</target>
+            </trans-unit>
+            <trans-unit id="detail.categories">
+                <source>Categories</source>
+                <target>Kategorije</target>
+            </trans-unit>
+            <trans-unit id="detail.description">
+                <source>Description</source>
+                <target>Opis</target>
+            </trans-unit>
+            <trans-unit id="detail.versions">
+                <source>Versions</source>
+                <target>Verzije</target>
+            </trans-unit>
+            <trans-unit id="detail.version_history">
+                <source>Version History</source>
+                <target>Historija verzija</target>
+            </trans-unit>
+            <trans-unit id="detail.current_version">
+                <source>Current Version</source>
+                <target>Trenutna verzija</target>
+            </trans-unit>
+            <trans-unit id="detail.related_documents">
+                <source>Related Documents</source>
+                <target>Povezani dokumenti</target>
+            </trans-unit>
+            <trans-unit id="detail.protected">
+                <source>Protected</source>
+                <target>Zaštićeno</target>
+            </trans-unit>
+            <trans-unit id="detail.login_required">
+                <source>Login required to download this document.</source>
+                <target>Za preuzimanje ovog dokumenta potrebna je prijava.</target>
+            </trans-unit>
+
+            <!-- Filter Form -->
+            <trans-unit id="filter.search">
+                <source>Search</source>
+                <target>Pretraga</target>
+            </trans-unit>
+            <trans-unit id="filter.search.placeholder">
+                <source>Search title...</source>
+                <target>Pretraži naslov...</target>
+            </trans-unit>
+            <trans-unit id="filter.category">
+                <source>Category</source>
+                <target>Kategorija</target>
+            </trans-unit>
+            <trans-unit id="filter.category.all">
+                <source>- All Categories -</source>
+                <target>- Sve kategorije -</target>
+            </trans-unit>
+            <trans-unit id="filter.type">
+                <source>Type</source>
+                <target>Tip</target>
+            </trans-unit>
+            <trans-unit id="filter.type.all">
+                <source>- All Types -</source>
+                <target>- Svi tipovi -</target>
+            </trans-unit>
+            <trans-unit id="filter.year">
+                <source>Year</source>
+                <target>Godina</target>
+            </trans-unit>
+            <trans-unit id="filter.year.all">
+                <source>- All Years -</source>
+                <target>- Sve godine -</target>
+            </trans-unit>
+            <trans-unit id="filter.submit">
+                <source>Apply Filters</source>
+                <target>Primijeni</target>
+            </trans-unit>
+            <trans-unit id="filter.reset">
+                <source>Reset</source>
+                <target>Poništi</target>
+            </trans-unit>
+
+            <!-- Pagination -->
+            <trans-unit id="pagination.previous">
+                <source>Previous</source>
+                <target>Prethodna</target>
+            </trans-unit>
+            <trans-unit id="pagination.next">
+                <source>Next</source>
+                <target>Sljedeća</target>
+            </trans-unit>
+            <trans-unit id="pagination.first">
+                <source>First</source>
+                <target>Prva</target>
+            </trans-unit>
+            <trans-unit id="pagination.last">
+                <source>Last</source>
+                <target>Posljednja</target>
+            </trans-unit>
+            <trans-unit id="pagination.page">
+                <source>Page</source>
+                <target>Stranica</target>
+            </trans-unit>
+            <trans-unit id="pagination.of">
+                <source>of</source>
+                <target>od</target>
+            </trans-unit>
+
+            <!-- FlexForm -->
+            <trans-unit id="flexform.view.viewType">
+                <source>View Type</source>
+                <target>Tip prikaza</target>
+            </trans-unit>
+            <trans-unit id="flexform.view.frontEndFilter">
+                <source>Show Frontend Filter</source>
+                <target>Prikaži filter u frontendu</target>
+            </trans-unit>
+            <trans-unit id="flexform.view.detailPid">
+                <source>Detail Page</source>
+                <target>Stranica detalja</target>
+            </trans-unit>
+            <trans-unit id="flexform.pagination.limit">
+                <source>Max Items (total limit)</source>
+                <target>Maksimalno stavki (ukupno)</target>
+            </trans-unit>
+            <trans-unit id="flexform.pagination.itemsPerPage">
+                <source>Items Per Page</source>
+                <target>Stavki po stranici</target>
+            </trans-unit>
+            <trans-unit id="flexform.filter.documentTypes">
+                <source>Filter by Document Types</source>
+                <target>Filtriraj prema tipu dokumenta</target>
+            </trans-unit>
+            <trans-unit id="flexform.filter.documentCategories">
+                <source>Filter by Document Categories</source>
+                <target>Filtriraj prema kategoriji dokumenta</target>
+            </trans-unit>
+            <trans-unit id="flexform.filter.dateFrom">
+                <source>Date From</source>
+                <target>Datum od</target>
+            </trans-unit>
+            <trans-unit id="flexform.filter.dateTo">
+                <source>Date To</source>
+                <target>Datum do</target>
+            </trans-unit>
+            <trans-unit id="flexform.filter.selectedDocuments">
+                <source>Select Specific Documents (overrides filters)</source>
+                <target>Odaberi specifične dokumente (zamjenjuje filtere)</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

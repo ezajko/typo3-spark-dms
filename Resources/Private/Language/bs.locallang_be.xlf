@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="bs" datatype="plaintext" original="messages" date="2025-01-01T00:00:00Z" product-name="spark_dms">
+        <header/>
+        <body>
+            <!-- Module -->
+            <trans-unit id="mlang_tabs_tab">
+                <source>Spark DMS</source>
+                <target>Spark DMS</target>
+            </trans-unit>
+            <trans-unit id="mlang_labels_tabdescr">
+                <source>Document Management System</source>
+                <target>Sistem upravljanja dokumentima</target>
+            </trans-unit>
+            <trans-unit id="mlang_labels_tablabel">
+                <source>Spark DMS</source>
+                <target>Spark DMS</target>
+            </trans-unit>
+
+            <!-- Document Manager -->
+            <trans-unit id="module.title">
+                <source>Spark DMS: Document Manager</source>
+                <target>Spark DMS: Upravljanje dokumentima</target>
+            </trans-unit>
+            <trans-unit id="module.description">
+                <source>Manage documents, types, and categories.</source>
+                <target>Upravljanje dokumentima, tipovima i kategorijama.</target>
+            </trans-unit>
+
+            <!-- List View -->
+            <trans-unit id="list.title">
+                <source>Title</source>
+                <target>Naslov</target>
+            </trans-unit>
+            <trans-unit id="list.registry_number">
+                <source>Registry #</source>
+                <target>Br. protokola</target>
+            </trans-unit>
+            <trans-unit id="list.type">
+                <source>Type</source>
+                <target>Tip</target>
+            </trans-unit>
+            <trans-unit id="list.category">
+                <source>Category</source>
+                <target>Kategorija</target>
+            </trans-unit>
+            <trans-unit id="list.doc_date">
+                <source>Doc Date</source>
+                <target>Datum dok.</target>
+            </trans-unit>
+            <trans-unit id="list.modified">
+                <source>Modified</source>
+                <target>Izmijenjeno</target>
+            </trans-unit>
+            <trans-unit id="list.actions">
+                <source>Actions</source>
+                <target>Akcije</target>
+            </trans-unit>
+            <trans-unit id="list.no_documents">
+                <source>No documents found matching your criteria.</source>
+                <target>Nema pronađenih dokumenata prema zadanom kriteriju.</target>
+            </trans-unit>
+            <trans-unit id="list.showing">
+                <source>Showing</source>
+                <target>Prikazano</target>
+            </trans-unit>
+            <trans-unit id="list.documents">
+                <source>document(s)</source>
+                <target>dokument(a)</target>
+            </trans-unit>
+
+            <!-- Filter -->
+            <trans-unit id="filter.search">
+                <source>Search</source>
+                <target>Pretraga</target>
+            </trans-unit>
+            <trans-unit id="filter.search.placeholder">
+                <source>Title, Registry #...</source>
+                <target>Naslov, Br. prot....</target>
+            </trans-unit>
+            <trans-unit id="filter.type">
+                <source>Type</source>
+                <target>Tip</target>
+            </trans-unit>
+            <trans-unit id="filter.type.all">
+                <source>All Types</source>
+                <target>Svi tipovi</target>
+            </trans-unit>
+            <trans-unit id="filter.category">
+                <source>Category</source>
+                <target>Kategorija</target>
+            </trans-unit>
+            <trans-unit id="filter.category.all">
+                <source>All Categories</source>
+                <target>Sve kategorije</target>
+            </trans-unit>
+            <trans-unit id="filter.date_from">
+                <source>Date From</source>
+                <target>Datum od</target>
+            </trans-unit>
+            <trans-unit id="filter.date_to">
+                <source>Date To</source>
+                <target>Datum do</target>
+            </trans-unit>
+            <trans-unit id="filter.submit">
+                <source>Filter</source>
+                <target>Filtriraj</target>
+            </trans-unit>
+            <trans-unit id="filter.reset">
+                <source>Reset Filters</source>
+                <target>Poništi filtere</target>
+            </trans-unit>
+
+            <!-- Actions -->
+            <trans-unit id="action.edit">
+                <source>Edit</source>
+                <target>Uredi</target>
+            </trans-unit>
+            <trans-unit id="action.create">
+                <source>Create New Document</source>
+                <target>Kreiraj novi dokument</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

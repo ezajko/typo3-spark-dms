@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="bs" datatype="plaintext" original="messages" date="2025-01-01T00:00:00Z" product-name="spark_dms">
+        <header/>
+        <body>
+            <!-- Document Model -->
+            <trans-unit id="tx_sparkdms_domain_model_document">
+                <source>Document</source>
+                <target>Dokument</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.title">
+                <source>Title</source>
+                <target>Naslov</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.registry_number">
+                <source>Registry Number</source>
+                <target>Broj protokola</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.description">
+                <source>Description</source>
+                <target>Opis</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.type">
+                <source>Document Type</source>
+                <target>Tip dokumenta</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.category">
+                <source>Category</source>
+                <target>Kategorija</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.document_date">
+                <source>Document Date</source>
+                <target>Datum dokumenta</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.is_protected">
+                <source>Protected (Login Required)</source>
+                <target>Zaštićeno (potrebna prijava)</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.uuid">
+                <source>UUID</source>
+                <target>UUID</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.versions">
+                <source>File Versions</source>
+                <target>Verzije fajla</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.related_documents">
+                <source>Related Documents</source>
+                <target>Povezani dokumenti</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.related_by">
+                <source>Referenced By</source>
+                <target>Referencirani od</target>
+            </trans-unit>
+
+            <!-- Document Version Model -->
+            <trans-unit id="tx_sparkdms_domain_model_document_version">
+                <source>Document Version</source>
+                <target>Verzija dokumenta</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document_version.version_number">
+                <source>Version Number</source>
+                <target>Broj verzije</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document_version.file">
+                <source>File</source>
+                <target>Fajl</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document_version.created_at">
+                <source>Created At</source>
+                <target>Kreirano</target>
+            </trans-unit>
+
+            <!-- Document Type Model -->
+            <trans-unit id="tx_sparkdms_domain_model_document_type">
+                <source>Document Type</source>
+                <target>Tip dokumenta</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document_type.title">
+                <source>Title</source>
+                <target>Naslov</target>
+            </trans-unit>
+
+            <!-- Document Category Model -->
+            <trans-unit id="tx_sparkdms_domain_model_document_category">
+                <source>Document Category</source>
+                <target>Kategorija dokumenta</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document_category.title">
+                <source>Title</source>
+                <target>Naslov</target>
+            </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document_category.parent">
+                <source>Parent Category</source>
+                <target>Nadređena kategorija</target>
+            </trans-unit>
+
+            <!-- TCA Tabs -->
+            <trans-unit id="tabs.general">
+                <source>General</source>
+                <target>Opće</target>
+            </trans-unit>
+            <trans-unit id="tabs.versions">
+                <source>Versions</source>
+                <target>Verzije</target>
+            </trans-unit>
+            <trans-unit id="tabs.related">
+                <source>Related</source>
+                <target>Povezano</target>
+            </trans-unit>
+            <trans-unit id="tabs.language">
+                <source>Language</source>
+                <target>Jezik</target>
+            </trans-unit>
+            <trans-unit id="tabs.access">
+                <source>Access</source>
+                <target>Pristup</target>
+            </trans-unit>
+
+            <!-- Misc -->
+            <trans-unit id="select.type.placeholder">
+                <source>-- Select Type --</source>
+                <target>-- Odaberi tip --</target>
+            </trans-unit>
+            <trans-unit id="button.add_version">
+                <source>Add Version</source>
+                <target>Dodaj verziju</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
