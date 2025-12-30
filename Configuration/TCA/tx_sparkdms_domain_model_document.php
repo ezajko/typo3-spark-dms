@@ -35,7 +35,7 @@ return [
         '1' => ['showitem' => '
             --div--;' . $ll . 'tabs.general, title, registry_number, description, type, category, document_date, is_protected, uuid,
             --div--;' . $ll . 'tabs.versions, versions,
-            --div--;' . $ll . 'tabs.related, related_documents,
+            --div--;' . $ll . 'tabs.related, related_documents, related_by,
             --div--;' . $ll . 'tabs.language, sys_language_uid, l10n_parent, l10n_diffsource,
             --div--;' . $ll . 'tabs.access, hidden, starttime, endtime,
         '],
@@ -169,11 +169,29 @@ return [
         'related_documents' => [
             'exclude' => true,
             'label' => $ll . 'tx_sparkdms_domain_model_document.related_documents',
+            'description' => 'Documents this document is related to',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectMultipleSideBySide',
                 'foreign_table' => 'tx_sparkdms_domain_model_document',
+                'foreign_table_where' => 'AND {#tx_sparkdms_domain_model_document}.{#uid} != ###THIS_UID###',
                 'MM' => 'tx_sparkdms_document_related_mm',
+                'minitems' => 0,
+                'maxitems' => 99,
+            ],
+        ],
+        // Symmetric field: documents that have THIS document as their related
+        'related_by' => [
+            'exclude' => true,
+            'label' => $ll . 'tx_sparkdms_domain_model_document.related_by',
+            'description' => 'Documents that reference this document as related',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectMultipleSideBySide',
+                'foreign_table' => 'tx_sparkdms_domain_model_document',
+                'foreign_table_where' => 'AND {#tx_sparkdms_domain_model_document}.{#uid} != ###THIS_UID###',
+                'MM' => 'tx_sparkdms_document_related_mm',
+                'MM_opposite_field' => 'related_documents',
                 'minitems' => 0,
                 'maxitems' => 99,
             ],

@@ -24,17 +24,19 @@
                 <thead class="table-dark">
                     <tr>
                         <th>UID</th>
+                        <th>Registry #</th>
                         <th>Title</th>
                         <th>Type</th>
                         <th>Categories</th>
                         <th>Date</th>
-                        <th>Versions</th>
+                        <th>Vers</th>
                     </tr>
                 </thead>
                 <tbody>
                     <f:for each="{paginator.paginatedItems}" as="document">
                         <tr>
                             <td>{document.uid}</td>
+                            <td>{document.registryNumber}</td>
                             <td>{document.title}</td>
                             <td>
                                 <f:if condition="{document.type}">{document.type.title}</f:if>

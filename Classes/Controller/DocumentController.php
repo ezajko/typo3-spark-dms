@@ -44,6 +44,12 @@ class DocumentController extends ActionController
      */
     public function listAction(int $currentPage = 1, ?array $filter = null): ResponseInterface
     {
+        // Always prefer filter from POST body for fresh values on each request
+        $requestBody = $this->request->getParsedBody() ?? [];
+        if (isset($requestBody['filter'])) {
+            $filter = $requestBody['filter'];
+        }
+        
         // Settings Structure (FlexForm mapped):
         // - settings.view.viewType          (string: Default, Simple, Card, Debug)
         // - settings.view.frontEndFilter    (bool: 0|1)

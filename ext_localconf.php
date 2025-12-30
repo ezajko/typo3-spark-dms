@@ -10,9 +10,9 @@ defined('TYPO3') or die();
         [
             \EtfUnsa\SparkDms\Controller\DocumentController::class => 'list, show, download'
         ],
-        // non-cacheable actions
+        // non-cacheable actions (list must be non-cached for filter/pagination to work)
         [
-            \EtfUnsa\SparkDms\Controller\DocumentController::class => 'download'
+            \EtfUnsa\SparkDms\Controller\DocumentController::class => 'list, download'
         ]
     );
 

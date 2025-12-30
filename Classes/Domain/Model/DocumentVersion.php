@@ -82,4 +82,35 @@ class DocumentVersion extends AbstractEntity
         $latest = $this->document->getLatestVersion();
         return $latest !== null && $latest->getUid() === $this->getUid();
     }
+
+    /**
+     * Get display label for version
+     * Returns versionLabel if set, otherwise generates "V.1", "V.2", etc.
+     * 
+     * @return string
+     */
+    public function getDisplayLabel(): string
+    {
+        // Use explicit label if provided
+        if (!empty($this->versionLabel)) {
+            return $this->versionLabel;
+        }
+
+        // Auto-generate based on position in parent document's versions
+        if ($this->document !== null) {
+            $versions = $this->document->getSortedVersions();
+            // getSortedVersions returns newest first, we need oldest first for numbering
+            $versionsArray = array_reverse($versions);
+            $position = 1;
+            foreach ($versionsArray as $version) {
+                if ($version->getUid() === $this->getUid()) {
+                    return 'V.' . $position;
+                }
+                $position++;
+            }
+        }
+
+        // Fallback
+        return 'V.1';
+    }
 }

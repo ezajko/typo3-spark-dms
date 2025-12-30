@@ -75,14 +75,7 @@
                                     </f:if>
                                 </td>
                                 <td>
-                                    <f:if condition="{version.versionLabel}">
-                                        <f:then>
-                                            <strong>{version.versionLabel}</strong>
-                                        </f:then>
-                                        <f:else>
-                                            <span class="text-muted">—</span>
-                                        </f:else>
-                                    </f:if>
+                                    <strong>{version.displayLabel}</strong>
                                 </td>
                                 <td>
                                     <f:if condition="{version.file}">

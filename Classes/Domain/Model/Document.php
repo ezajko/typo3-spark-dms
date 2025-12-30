@@ -221,4 +221,61 @@ class Document extends AbstractEntity
     {
         $this->relatedDocuments->detach($document);
     }
+
+    /**
+     * Get all related documents (bidirectional)
+     * Returns documents where THIS document is in their related_documents OR
+     * documents that are in this document's related_documents.
+     * 
+     * @return Document[]
+     */
+    public function getAllRelatedDocuments(): array
+    {
+        $related = [];
+        $seenUids = [];
+
+        // Direct relations (this document has these as related)
+        foreach ($this->relatedDocuments as $doc) {
+            if (!in_array($doc->getUid(), $seenUids, true)) {
+                $related[] = $doc;
+                $seenUids[] = $doc->getUid();
+            }
+        }
+
+        // Reverse relations (these documents have this as their related)
+        // Query MM table for uid_foreign = this.uid
+        if ($this->getUid() > 0) {
+            $queryBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+                \TYPO3\CMS\Core\Database\ConnectionPool::class
+            )->getQueryBuilderForTable('tx_sparkdms_document_related_mm');
+
+            $reverseUids = $queryBuilder
+                ->select('uid_local')
+                ->from('tx_sparkdms_document_related_mm')
+                ->where(
+                    $queryBuilder->expr()->eq('uid_foreign', $queryBuilder->createNamedParameter($this->getUid(), \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
+                )
+                ->executeQuery()
+                ->fetchAllAssociative();
+
+            if (!empty($reverseUids)) {
+                $docRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+                    \EtfUnsa\SparkDms\Domain\Repository\DocumentRepository::class
+                );
+                
+                foreach ($reverseUids as $row) {
+                    $uid = (int)$row['uid_local'];
+                    if (!in_array($uid, $seenUids, true)) {
+                        $doc = $docRepository->findByUid($uid);
+                        if ($doc !== null) {
+                            $related[] = $doc;
+                            $seenUids[] = $uid;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $related;
+    }
 }

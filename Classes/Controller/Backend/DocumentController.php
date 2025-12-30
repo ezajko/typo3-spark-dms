@@ -12,6 +12,8 @@ use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Pagination\ArrayPaginator;
+use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -33,6 +35,9 @@ class DocumentController extends ActionController
     private const TABLE_TYPE = 'tx_sparkdms_domain_model_document_type';
     private const TABLE_CATEGORY = 'tx_sparkdms_domain_model_document_category';
     private const TABLE_CATEGORY_MM = 'tx_sparkdms_document_category_mm';
+    
+    // Pagination defaults
+    private const ITEMS_PER_PAGE = 20;
 
     public function __construct(
         protected readonly ModuleTemplateFactory $moduleTemplateFactory,
@@ -69,14 +74,18 @@ class DocumentController extends ActionController
     {
         $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
         
-        // Get filter and sort from request (POST or GET)
+        // Get filter, sort, and pagination from request
         $queryParams = $this->request->getQueryParams();
         $postParams = $this->request->getParsedBody() ?? [];
         
-        // Filter can come from POST (form submit) or GET (sort links)
+        // Filter can come from POST (form submit) or GET (sort/pagination links)
         $filter = $postParams['filter'] ?? $queryParams['filter'] ?? [];
         $sort = $queryParams['sort'] ?? 'tstamp';
         $direction = $queryParams['direction'] ?? 'desc';
+        $currentPage = (int)($queryParams['page'] ?? 1);
+        if ($currentPage < 1) {
+            $currentPage = 1;
+        }
         
         // Sanitize sort field
         $allowedSortFields = ['title', 'registry_number', 'document_date', 'tstamp'];
@@ -165,6 +174,10 @@ class DocumentController extends ActionController
         // Enrich documents with related data (Type titles, Category titles)
         $documents = $this->enrichDocumentsWithRelations($documents);
         
+        // Pagination using TYPO3 Core ArrayPaginator
+        $paginator = new ArrayPaginator($documents, $currentPage, self::ITEMS_PER_PAGE);
+        $pagination = new SimplePagination($paginator);
+        
         // Get available Types and Categories for filter dropdowns
         $types = $this->getAvailableTypes($storagePid);
         $categories = $this->getAvailableCategories($storagePid);
@@ -173,7 +186,10 @@ class DocumentController extends ActionController
         $this->addDocHeaderButtons($moduleTemplate, $storagePid);
         
         // Assign to template
-        $moduleTemplate->assign('documents', $documents);
+        $moduleTemplate->assign('documents', $paginator->getPaginatedItems());
+        $moduleTemplate->assign('paginator', $paginator);
+        $moduleTemplate->assign('pagination', $pagination);
+        $moduleTemplate->assign('currentPage', $currentPage);
         $moduleTemplate->assign('filter', $filter);
         $moduleTemplate->assign('sort', $sort);
         $moduleTemplate->assign('direction', $direction);

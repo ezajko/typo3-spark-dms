@@ -45,10 +45,13 @@ class DocumentRepository extends Repository
         $query = $this->createQuery();
         $constraints = [];
 
-        // Search filter (title)
+        // Search filter (title and registryNumber)
         if (!empty($demand->getSearch())) {
             $searchTerm = '%' . $demand->getSearch() . '%';
-            $constraints[] = $query->like('title', $searchTerm);
+            $constraints[] = $query->logicalOr(
+                $query->like('title', $searchTerm),
+                $query->like('registryNumber', $searchTerm)
+            );
         }
 
         // Type filter

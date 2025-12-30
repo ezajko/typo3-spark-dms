@@ -83,14 +83,7 @@
                     <f:for each="{sortedVersions}" as="version">
                         <tr class="{f:if(condition: version.isLatest, then: 'table-success')}">
                             <td>
-                                <f:if condition="{version.versionLabel}">
-                                    <f:then>
-                                        <span class="badge bg-secondary">{version.versionLabel}</span>
-                                    </f:then>
-                                    <f:else>
-                                        <span class="text-muted">v{version.uid}</span>
-                                    </f:else>
-                                </f:if>
+                                <span class="badge bg-secondary">{version.displayLabel}</span>
                                 <f:if condition="{version.isLatest}">
                                     <span class="badge bg-success ms-1">Latest</span>
                                 </f:if>
@@ -119,33 +112,56 @@
         </section>
     </f:if>
 
-    <f:comment><!-- Related Documents --></f:comment>
-    <f:if condition="{document.relatedDocuments -> f:count()}">
+    <f:comment><!-- Related Documents (bidirectional) --></f:comment>
+    <f:if condition="{document.allRelatedDocuments}">
         <section class="mb-4">
             <h5>Related Documents</h5>
-            <ul class="list-group">
-                <f:for each="{document.relatedDocuments}" as="relatedDoc">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <div>
-                            <i class="bi bi-file-earmark-text me-2"></i>
-                            <f:if condition="{settings.view.detailPid}">
-                                <f:then>
-                                    <f:link.action action="show" arguments="{document: relatedDoc}"
-                                        pageUid="{settings.view.detailPid}">
-                                        {relatedDoc.title}
-                                    </f:link.action>
-                                </f:then>
-                                <f:else>
+            <table class="table table-striped table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Registry #</th>
+                        <th>Type</th>
+                        <th>Categories</th>
+                        <th>Date</th>
+                        <th>Download</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <f:for each="{document.allRelatedDocuments}" as="relatedDoc">
+                        <tr>
+                            <td>
+                                <f:link.action action="show" arguments="{document: relatedDoc}">
                                     {relatedDoc.title}
-                                </f:else>
-                            </f:if>
-                        </div>
-                        <f:if condition="{relatedDoc.type}">
-                            <span class="badge bg-secondary">{relatedDoc.type.title}</span>
-                        </f:if>
-                    </li>
-                </f:for>
-            </ul>
+                                </f:link.action>
+                            </td>
+                            <td>{relatedDoc.registryNumber}</td>
+                            <td>
+                                <f:if condition="{relatedDoc.type}">
+                                    <span class="badge bg-secondary">{relatedDoc.type.title}</span>
+                                </f:if>
+                            </td>
+                            <td>
+                                <f:for each="{relatedDoc.category}" as="cat" iteration="catIter">
+                                    <span class="badge bg-info text-dark">{cat.title}</span>
+                                    <f:if condition="{catIter.isLast} == 0"> </f:if>
+                                </f:for>
+                            </td>
+                            <td>
+                                <f:format.date format="d.m.Y">{relatedDoc.documentDate}</f:format.date>
+                            </td>
+                            <td>
+                                <f:if condition="{relatedDoc.file}">
+                                    <f:link.action action="download" arguments="{document: relatedDoc}"
+                                        class="btn btn-sm btn-outline-primary" title="Download">
+                                        <i class="bi bi-download"></i>
+                                    </f:link.action>
+                                </f:if>
+                            </td>
+                        </tr>
+                    </f:for>
+                </tbody>
+            </table>
         </section>
     </f:if>
 

@@ -208,9 +208,64 @@
         </table>
     </div>
 
+    <f:comment><!-- Pagination Controls --></f:comment>
+    <f:if condition="{paginator.numberOfPages} > 1">
+        <nav class="mb-4" aria-label="Document pagination">
+            <ul class="pagination pagination-sm justify-content-center">
+                <f:comment><!-- Previous --></f:comment>
+                <f:if condition="{pagination.previousPageNumber}">
+                    <li class="page-item">
+                        <f:link.action action="list"
+                            arguments="{filter: filter, sort: sort, direction: direction, page: pagination.previousPageNumber}"
+                            class="page-link">
+                            <core:icon identifier="actions-chevron-left" size="small" /> Prev
+                        </f:link.action>
+                    </li>
+                </f:if>
+
+                <f:comment><!-- Page Numbers --></f:comment>
+                <f:for each="{pagination.allPageNumbers}" as="pageNumber">
+                    <f:if condition="{pageNumber} == {currentPage}">
+                        <f:then>
+                            <li class="page-item active">
+                                <span class="page-link">{pageNumber}</span>
+                            </li>
+                        </f:then>
+                        <f:else>
+                            <li class="page-item">
+                                <f:link.action action="list"
+                                    arguments="{filter: filter, sort: sort, direction: direction, page: pageNumber}"
+                                    class="page-link">
+                                    {pageNumber}
+                                </f:link.action>
+                            </li>
+                        </f:else>
+                    </f:if>
+                </f:for>
+
+                <f:comment><!-- Next --></f:comment>
+                <f:if condition="{pagination.nextPageNumber}">
+                    <li class="page-item">
+                        <f:link.action action="list"
+                            arguments="{filter: filter, sort: sort, direction: direction, page: pagination.nextPageNumber}"
+                            class="page-link">
+                            Next
+                            <core:icon identifier="actions-chevron-right" size="small" />
+                        </f:link.action>
+                    </li>
+                </f:if>
+            </ul>
+        </nav>
+    </f:if>
+
     <f:comment><!-- Document Count --></f:comment>
-    <p class="text-muted">
-        <small>Showing {documents -> f:count()} document(s)</small>
+    <p class="text-muted text-center">
+        <small>
+            Showing {documents -> f:count()} of {paginator.count} document(s)
+            <f:if condition="{paginator.numberOfPages} > 1">
+                (Page {currentPage} of {paginator.numberOfPages})
+            </f:if>
+        </small>
     </p>
 </f:section>
 

@@ -23,7 +23,9 @@
                 <thead>
                     <tr>
                         <th>Title</th>
+                        <th>Registry #</th>
                         <th>Type</th>
+                        <th>Categories</th>
                         <th>Date</th>
                         <th>Download</th>
                     </tr>
@@ -44,10 +46,17 @@
                                     </f:else>
                                 </f:if>
                             </td>
+                            <td>{document.registryNumber}</td>
                             <td>
                                 <f:if condition="{document.type}">
                                     <span class="badge bg-secondary">{document.type.title}</span>
                                 </f:if>
+                            </td>
+                            <td>
+                                <f:for each="{document.category}" as="cat" iteration="catIter">
+                                    <span class="badge bg-info text-dark">{cat.title}</span>
+                                    <f:if condition="{catIter.isLast} == 0"> </f:if>
+                                </f:for>
                             </td>
                             <td>
                                 <f:format.date format="d.m.Y">{document.documentDate}</f:format.date>

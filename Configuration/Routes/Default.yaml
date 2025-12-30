@@ -4,6 +4,8 @@ routeEnhancers:
     extension: SparkDms
     plugin: Pi1
     routes:
+      - routePath: '/dms/'
+        _controller: 'Document::list'
       - routePath: '/dms/page/{currentPage}'
         _controller: 'Document::list'
         _arguments:

@@ -37,6 +37,9 @@
             <trans-unit id="tx_sparkdms_domain_model_document.related_documents">
                 <source>Related Documents</source>
             </trans-unit>
+            <trans-unit id="tx_sparkdms_domain_model_document.related_by">
+                <source>Referenced By</source>
+            </trans-unit>
 
             <!-- Document Version Model -->
             <trans-unit id="tx_sparkdms_domain_model_document_version">

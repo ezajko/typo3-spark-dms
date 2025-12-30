@@ -5,12 +5,12 @@
     @author Ernedin Zajko <ezajko@root.ba>
 -->
 <div class="dms-filter mb-5 p-4 bg-light rounded shadow-sm">
-    <f:form action="list" method="get" class="row g-3 px-2">
+    <f:form action="list" method="post" class="row g-3 px-2">
         <!-- Keyword Search -->
         <div class="col-md-3">
             <label for="dms-filter-search" class="form-label fw-bold">Search</label>
             <f:form.textfield name="filter[search]" id="dms-filter-search" value="{filter.search}" class="form-control"
-                placeholder="Search title..." />
+                placeholder="Search title or registry..." />
         </div>
 
         <!-- Category Filter -->
@@ -45,7 +45,7 @@
 
         <!-- Submit Button -->
         <div class="col-md-2 d-flex align-items-end">
-            <f:form.submit value="Applied Filters" class="btn btn-primary w-100" />
+            <f:form.submit value="Filter" class="btn btn-primary w-100" />
         </div>
     </f:form>
 </div>
