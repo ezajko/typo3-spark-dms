@@ -1,3 +1,5 @@
+# Dependency Injection Services Configuration
+# Author: Ernedin Zajko <ezajko@root.ba>
 services:
   _defaults:
     autowire: true
