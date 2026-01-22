@@ -25,7 +25,7 @@ Domain Models
 Document
 --------
 
-:Path: `EtfUnsa\SparkDms\Domain\Model\Document`
+:Path: `RootBa\SparkDms\Domain\Model\Document`
 :Table: `tx_sparkdms_domain_model_document`
 
 The main document entity.
@@ -58,7 +58,7 @@ Helper Methods:
 DocumentVersion
 ---------------
 
-:Path: `EtfUnsa\SparkDms\Domain\Model\DocumentVersion`
+:Path: `RootBa\SparkDms\Domain\Model\DocumentVersion`
 :Table: `tx_sparkdms_domain_model_document_version`
 
 Represents a version of a document.
@@ -73,7 +73,7 @@ Properties:
 DocumentType
 ------------
 
-:Path: `EtfUnsa\SparkDms\Domain\Model\DocumentType`
+:Path: `RootBa\SparkDms\Domain\Model\DocumentType`
 :Table: `tx_sparkdms_domain_model_document_type`
 
 Properties:
@@ -83,7 +83,7 @@ Properties:
 DocumentCategory
 ----------------
 
-:Path: `EtfUnsa\SparkDms\Domain\Model\DocumentCategory`
+:Path: `RootBa\SparkDms\Domain\Model\DocumentCategory`
 :Table: `tx_sparkdms_domain_model_document_category`
 
 Properties:
@@ -97,7 +97,7 @@ Repositories
 DocumentRepository
 ------------------
 
-:Path: `EtfUnsa\SparkDms\Domain\Repository\DocumentRepository`
+:Path: `RootBa\SparkDms\Domain\Repository\DocumentRepository`
 
 Key Methods:
 
@@ -112,7 +112,7 @@ Key Methods:
 DocumentDemand
 --------------
 
-:Path: `EtfUnsa\SparkDms\Domain\Model\Dto\DocumentDemand`
+:Path: `RootBa\SparkDms\Domain\Model\Dto\DocumentDemand`
 
 A Data Transfer Object for filtering documents.
 
@@ -136,7 +136,7 @@ Controllers
 Frontend Controller
 -------------------
 
-:Path: `EtfUnsa\SparkDms\Controller\DocumentController`
+:Path: `RootBa\SparkDms\Controller\DocumentController`
 
 Actions:
 
@@ -147,7 +147,7 @@ Actions:
 Backend Controller
 ------------------
 
-:Path: `EtfUnsa\SparkDms\Controller\Backend\DocumentController`
+:Path: `RootBa\SparkDms\Controller\Backend\DocumentController`
 
 Actions:
 
@@ -205,7 +205,7 @@ Hooks and Events
 DataHandler Hook
 ----------------
 
-:Path: `EtfUnsa\SparkDms\Hook\DataHandlerHook`
+:Path: `RootBa\SparkDms\Hook\DataHandlerHook`
 
 Handles file organization when documents are saved.
 
@@ -324,7 +324,7 @@ Options:
 File Organization Service
 =========================
 
-:Path: `EtfUnsa\\SparkDms\\Service\\FileOrganizationService`
+:Path: `RootBa\\SparkDms\\Service\\FileOrganizationService`
 
 Automatically organizes uploaded files from ``/_inbox/`` to structured folders:
 

@@ -1,15 +1,21 @@
 {
-    "name": "etf-unsa/spark-dms",
+    "name": "rootba/typo3-spark-dms",
     "type": "typo3-cms-extension",
     "description": "Spark Document Management System",
     "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Ernedin Zajko",
+            "email": "ezajko@root.ba"
+        }
+    ],
     "require": {
         "typo3/cms-core": "^13.4 || ^14.0",
         "typo3/cms-extbase": "^13.4 || ^14.0"
     },
     "autoload": {
         "psr-4": {
-            "EtfUnsa\\SparkDms\\": "Classes/"
+            "RootBa\\SparkDms\\": "Classes/"
         }
     },
     "extra": {

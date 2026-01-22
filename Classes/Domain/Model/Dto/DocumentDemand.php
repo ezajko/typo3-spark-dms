@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace EtfUnsa\SparkDms\Domain\Model\Dto;
+namespace RootBa\SparkDms\Domain\Model\Dto;
 
-use EtfUnsa\SparkDms\Domain\Model\DocumentType;
-use EtfUnsa\SparkDms\Domain\Model\DocumentCategory;
+use RootBa\SparkDms\Domain\Model\DocumentType;
+use RootBa\SparkDms\Domain\Model\DocumentCategory;
 use DateTime;
 
 class DocumentDemand

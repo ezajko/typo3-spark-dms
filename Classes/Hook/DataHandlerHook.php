@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EtfUnsa\SparkDms\Hook;
+namespace RootBa\SparkDms\Hook;
 
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Database\Connection;

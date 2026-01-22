@@ -10,7 +10,7 @@ Spark DMS
    spark_dms
 
 :Package name:
-   etf-unsa/spark-dms
+   rootba/typo3-spark-dms
 
 :Version:
    |release|

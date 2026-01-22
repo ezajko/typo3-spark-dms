@@ -6,21 +6,21 @@ services:
     autoconfigure: true
     public: false
 
-  EtfUnsa\SparkDms\:
+  RootBa\SparkDms\:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
 
   # Controllers must be public to be dispatched
-  EtfUnsa\SparkDms\Controller\:
+  RootBa\SparkDms\Controller\:
     resource: '../Classes/Controller'
     public: true
 
-  EtfUnsa\SparkDms\Controller\Backend\:
+  RootBa\SparkDms\Controller\Backend\:
     resource: '../Classes/Controller/Backend'
     public: true
 
   # Console commands
-  EtfUnsa\SparkDms\Command\:
+  RootBa\SparkDms\Command\:
     resource: '../Classes/Command'
     tags:
       - { name: 'console.command' }

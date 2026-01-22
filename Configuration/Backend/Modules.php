@@ -1,6 +1,6 @@
 <?php
 
-use EtfUnsa\SparkDms\Controller\Backend\DocumentController;
+use RootBa\SparkDms\Controller\Backend\DocumentController;
 
 return [
     'spark_dms_document' => [

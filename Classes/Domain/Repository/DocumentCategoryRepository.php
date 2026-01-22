@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EtfUnsa\SparkDms\Domain\Repository;
+namespace RootBa\SparkDms\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
@@ -10,7 +10,7 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 /**
  * Repository for DocumentCategory entities
  * 
- * @extends Repository<\EtfUnsa\SparkDms\Domain\Model\DocumentCategory>
+ * @extends Repository<\RootBa\SparkDms\Domain\Model\DocumentCategory>
  * @author Ernedin Zajko <ezajko@root.ba>
  */
 class DocumentCategoryRepository extends Repository

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EtfUnsa\SparkDms\EventListener;
+namespace RootBa\SparkDms\EventListener;
 
 use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Resource\Event\AfterDefaultUploadFolderWasResolvedEvent;

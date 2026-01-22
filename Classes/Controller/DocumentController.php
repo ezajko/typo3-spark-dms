@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace EtfUnsa\SparkDms\Controller;
+namespace RootBa\SparkDms\Controller;
 
-use EtfUnsa\SparkDms\Domain\Model\Document;
-use EtfUnsa\SparkDms\Domain\Model\DocumentVersion;
-use EtfUnsa\SparkDms\Domain\Model\Dto\DocumentDemand;
-use EtfUnsa\SparkDms\Domain\Repository\DocumentRepository;
-use EtfUnsa\SparkDms\Domain\Repository\DocumentVersionRepository;
-use EtfUnsa\SparkDms\Domain\Repository\DocumentCategoryRepository;
-use EtfUnsa\SparkDms\Domain\Repository\DocumentTypeRepository;
-use EtfUnsa\SparkDms\Service\DocumentUrlService;
+use RootBa\SparkDms\Domain\Model\Document;
+use RootBa\SparkDms\Domain\Model\DocumentVersion;
+use RootBa\SparkDms\Domain\Model\Dto\DocumentDemand;
+use RootBa\SparkDms\Domain\Repository\DocumentRepository;
+use RootBa\SparkDms\Domain\Repository\DocumentVersionRepository;
+use RootBa\SparkDms\Domain\Repository\DocumentCategoryRepository;
+use RootBa\SparkDms\Domain\Repository\DocumentTypeRepository;
+use RootBa\SparkDms\Service\DocumentUrlService;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;

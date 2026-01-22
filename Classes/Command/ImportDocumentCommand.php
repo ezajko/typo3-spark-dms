@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace EtfUnsa\SparkDms\Command;
+namespace RootBa\SparkDms\Command;
 
-use EtfUnsa\SparkDms\Domain\Model\Document;
-use EtfUnsa\SparkDms\Domain\Model\DocumentVersion;
-use EtfUnsa\SparkDms\Domain\Repository\DocumentRepository;
-use EtfUnsa\SparkDms\Domain\Repository\DocumentCategoryRepository;
-use EtfUnsa\SparkDms\Domain\Repository\DocumentTypeRepository;
-use EtfUnsa\SparkDms\Domain\Repository\DocumentVersionRepository;
-use EtfUnsa\SparkDms\Service\FileOrganizationService;
+use RootBa\SparkDms\Domain\Model\Document;
+use RootBa\SparkDms\Domain\Model\DocumentVersion;
+use RootBa\SparkDms\Domain\Repository\DocumentRepository;
+use RootBa\SparkDms\Domain\Repository\DocumentCategoryRepository;
+use RootBa\SparkDms\Domain\Repository\DocumentTypeRepository;
+use RootBa\SparkDms\Domain\Repository\DocumentVersionRepository;
+use RootBa\SparkDms\Service\FileOrganizationService;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

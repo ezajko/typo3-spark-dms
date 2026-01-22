@@ -24,7 +24,7 @@ A robust Document Management System (DMS) extension for TYPO3 CMS 13 LTS and v14
 ## Installation
 
 ```bash
-composer require etf-unsa/spark-dms
+composer require rootba/typo3-spark-dms
 ```
 
 ## Configuration

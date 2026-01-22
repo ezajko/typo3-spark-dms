@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EtfUnsa\SparkDms\Controller\Backend;
+namespace RootBa\SparkDms\Controller\Backend;
 
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Backend\Routing\UriBuilder as BackendUriBuilder;

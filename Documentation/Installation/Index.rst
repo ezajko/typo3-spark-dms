@@ -20,13 +20,13 @@ The recommended way to install Spark DMS is via Composer:
 
 .. code-block:: bash
 
-   composer require etf-unsa/spark-dms
+   composer require rootba/typo3-spark-dms
 
 Alternatively, if installing from a local package:
 
 .. code-block:: bash
 
-   composer require etf-unsa/spark-dms:@dev
+   composer require rootba/typo3-spark-dms:@dev
 
 Activate the Extension
 ======================

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EtfUnsa\SparkDms\Domain\Model;
+namespace RootBa\SparkDms\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
@@ -260,7 +260,7 @@ class Document extends AbstractEntity
 
             if (!empty($reverseUids)) {
                 $docRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
-                    \EtfUnsa\SparkDms\Domain\Repository\DocumentRepository::class
+                    \RootBa\SparkDms\Domain\Repository\DocumentRepository::class
                 );
                 
                 foreach ($reverseUids as $row) {

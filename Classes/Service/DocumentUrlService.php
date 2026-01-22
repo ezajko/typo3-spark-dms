@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace EtfUnsa\SparkDms\Service;
+namespace RootBa\SparkDms\Service;
 
-use EtfUnsa\SparkDms\Domain\Model\Document;
+use RootBa\SparkDms\Domain\Model\Document;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 
 class DocumentUrlService

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace EtfUnsa\SparkDms\Domain\Repository;
+namespace RootBa\SparkDms\Domain\Repository;
 
-use EtfUnsa\SparkDms\Domain\Model\Dto\DocumentDemand;
+use RootBa\SparkDms\Domain\Model\Dto\DocumentDemand;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
@@ -13,7 +13,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Repository for Document entities with demand-based filtering
  * 
- * @extends Repository<\EtfUnsa\SparkDms\Domain\Model\Document>
+ * @extends Repository<\RootBa\SparkDms\Domain\Model\Document>
  * @author Ernedin Zajko <ezajko@root.ba>
  */
 class DocumentRepository extends Repository
@@ -38,7 +38,7 @@ class DocumentRepository extends Repository
      * Find documents by demand (with filtering)
      * 
      * @param DocumentDemand $demand Filter criteria
-     * @return QueryResultInterface<\EtfUnsa\SparkDms\Domain\Model\Document>
+     * @return QueryResultInterface<\RootBa\SparkDms\Domain\Model\Document>
      */
     public function findByDemand(DocumentDemand $demand): QueryResultInterface
     {
@@ -124,7 +124,7 @@ class DocumentRepository extends Repository
      * Find documents by multiple type UIDs
      * 
      * @param array<int> $typeUids
-     * @return QueryResultInterface<\EtfUnsa\SparkDms\Domain\Model\Document>
+     * @return QueryResultInterface<\RootBa\SparkDms\Domain\Model\Document>
      */
     public function findByTypeUids(array $typeUids): QueryResultInterface
     {
@@ -141,7 +141,7 @@ class DocumentRepository extends Repository
      * Find documents by multiple category UIDs (any match)
      * 
      * @param array<int> $categoryUids
-     * @return QueryResultInterface<\EtfUnsa\SparkDms\Domain\Model\Document>
+     * @return QueryResultInterface<\RootBa\SparkDms\Domain\Model\Document>
      */
     public function findByCategoryUids(array $categoryUids): QueryResultInterface
     {

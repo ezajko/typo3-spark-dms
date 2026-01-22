@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace EtfUnsa\SparkDms\Command;
+namespace RootBa\SparkDms\Command;
 
-use EtfUnsa\SparkDms\Domain\Repository\DocumentRepository;
-use EtfUnsa\SparkDms\Domain\Repository\DocumentCategoryRepository;
-use EtfUnsa\SparkDms\Domain\Repository\DocumentTypeRepository;
+use RootBa\SparkDms\Domain\Repository\DocumentRepository;
+use RootBa\SparkDms\Domain\Repository\DocumentCategoryRepository;
+use RootBa\SparkDms\Domain\Repository\DocumentTypeRepository;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

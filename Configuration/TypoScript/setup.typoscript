@@ -56,16 +56,16 @@ plugin.tx_sparkdms_pi2 {
 }
 
 config.tx_extbase.persistence.classes {
-    EtfUnsa\SparkDms\Domain\Model\Document {
+    RootBa\SparkDms\Domain\Model\Document {
         tableName = tx_sparkdms_domain_model_document
     }
-    EtfUnsa\SparkDms\Domain\Model\DocumentVersion {
+    RootBa\SparkDms\Domain\Model\DocumentVersion {
         tableName = tx_sparkdms_domain_model_document_version
     }
-    EtfUnsa\SparkDms\Domain\Model\DocumentType {
+    RootBa\SparkDms\Domain\Model\DocumentType {
         tableName = tx_sparkdms_domain_model_document_type
     }
-    EtfUnsa\SparkDms\Domain\Model\DocumentCategory {
+    RootBa\SparkDms\Domain\Model\DocumentCategory {
         tableName = tx_sparkdms_domain_model_document_category
     }
 }
