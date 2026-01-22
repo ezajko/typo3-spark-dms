@@ -72,9 +72,9 @@ Database Tables
 The extension creates the following database tables:
 
 - `tx_sparkdms_domain_model_document` - Document records
-- `tx_sparkdms_domain_model_document_version` - Document versions
-- `tx_sparkdms_domain_model_document_type` - Document types
-- `tx_sparkdms_domain_model_document_category` - Document categories
+- `tx_sparkdms_domain_model_documentversion` - Document versions
+- `tx_sparkdms_domain_model_documenttype` - Document types
+- `tx_sparkdms_domain_model_documentcategory` - Document categories
 
 All tables are created automatically during extension activation.
 

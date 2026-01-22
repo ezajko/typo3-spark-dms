@@ -44,8 +44,8 @@ return [
                 'items' => [
                     ['label' => '', 'value' => 0],
                 ],
-                'foreign_table' => 'tx_sparkdms_domain_model_document_category',
-                'foreign_table_where' => 'AND {#tx_sparkdms_domain_model_document_category}.{#sys_language_uid} = 0',
+                'foreign_table' => 'tx_sparkdms_domain_model_documentcategory',
+                'foreign_table_where' => 'AND {#tx_sparkdms_domain_model_documentcategory}.{#sys_language_uid} = 0',
             ],
         ],
         'l10n_diffsource' => [
@@ -69,7 +69,7 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectTree',
-                'foreign_table' => 'tx_sparkdms_domain_model_document_category',
+                'foreign_table' => 'tx_sparkdms_domain_model_documentcategory',
                 'treeConfig' => [
                     'parentField' => 'parent',
                     'appearance' => ['showHeader' => true, 'expandAll' => true, 'maxLevels' => 5],

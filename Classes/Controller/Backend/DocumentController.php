@@ -32,9 +32,9 @@ class DocumentController extends ActionController
 {
     // Table names
     private const TABLE_DOCUMENT = 'tx_sparkdms_domain_model_document';
-    private const TABLE_TYPE = 'tx_sparkdms_domain_model_document_type';
-    private const TABLE_CATEGORY = 'tx_sparkdms_domain_model_document_category';
-    private const TABLE_CATEGORY_MM = 'tx_sparkdms_document_category_mm';
+    private const TABLE_TYPE = 'tx_sparkdms_domain_model_documenttype';
+    private const TABLE_CATEGORY = 'tx_sparkdms_domain_model_documentcategory';
+    private const TABLE_CATEGORY_MM = 'tx_sparkdms_documentcategory_mm';
     
     // Pagination defaults
     private const ITEMS_PER_PAGE = 20;

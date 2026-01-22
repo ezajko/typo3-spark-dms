@@ -60,13 +60,13 @@ config.tx_extbase.persistence.classes {
         tableName = tx_sparkdms_domain_model_document
     }
     RootBa\SparkDms\Domain\Model\DocumentVersion {
-        tableName = tx_sparkdms_domain_model_document_version
+        tableName = tx_sparkdms_domain_model_documentversion
     }
     RootBa\SparkDms\Domain\Model\DocumentType {
-        tableName = tx_sparkdms_domain_model_document_type
+        tableName = tx_sparkdms_domain_model_documenttype
     }
     RootBa\SparkDms\Domain\Model\DocumentCategory {
-        tableName = tx_sparkdms_domain_model_document_category
+        tableName = tx_sparkdms_domain_model_documentcategory
     }
 }
 

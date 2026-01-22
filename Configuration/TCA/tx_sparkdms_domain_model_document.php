@@ -105,7 +105,7 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'foreign_table' => 'tx_sparkdms_domain_model_document_type',
+                'foreign_table' => 'tx_sparkdms_domain_model_documenttype',
                 'items' => [
                     ['label' => $ll . 'select.type.placeholder', 'value' => 0],
                 ],
@@ -119,12 +119,12 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectTree',
-                'foreign_table' => 'tx_sparkdms_domain_model_document_category',
+                'foreign_table' => 'tx_sparkdms_domain_model_documentcategory',
                 'treeConfig' => [
                     'parentField' => 'parent',
                     'appearance' => ['showHeader' => true, 'expandAll' => true, 'maxLevels' => 5],
                 ],
-                'MM' => 'tx_sparkdms_document_category_mm',
+                'MM' => 'tx_sparkdms_documentcategory_mm',
                 'minitems' => 0,
                 'maxitems' => 99,
             ],
@@ -148,7 +148,7 @@ return [
             'label' => $ll . 'tx_sparkdms_domain_model_document.versions',
             'config' => [
                 'type' => 'inline',
-                'foreign_table' => 'tx_sparkdms_domain_model_document_version',
+                'foreign_table' => 'tx_sparkdms_domain_model_documentversion',
                 'foreign_field' => 'document',
                 'foreign_sortby' => 'sorting',
                 'maxitems' => 99,

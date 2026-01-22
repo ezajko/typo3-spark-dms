@@ -24,7 +24,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 final class DefaultUploadFolderListener
 {
     protected const DMS_TABLES = [
-        'tx_sparkdms_domain_model_document_version',
+        'tx_sparkdms_domain_model_documentversion',
     ];
 
     public function __invoke(AfterDefaultUploadFolderWasResolvedEvent $event): void

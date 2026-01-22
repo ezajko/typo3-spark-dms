@@ -59,7 +59,7 @@ DocumentVersion
 ---------------
 
 :Path: `RootBa\SparkDms\Domain\Model\DocumentVersion`
-:Table: `tx_sparkdms_domain_model_document_version`
+:Table: `tx_sparkdms_domain_model_documentversion`
 
 Represents a version of a document.
 
@@ -74,7 +74,7 @@ DocumentType
 ------------
 
 :Path: `RootBa\SparkDms\Domain\Model\DocumentType`
-:Table: `tx_sparkdms_domain_model_document_type`
+:Table: `tx_sparkdms_domain_model_documenttype`
 
 Properties:
 
@@ -84,7 +84,7 @@ DocumentCategory
 ----------------
 
 :Path: `RootBa\SparkDms\Domain\Model\DocumentCategory`
-:Table: `tx_sparkdms_domain_model_document_category`
+:Table: `tx_sparkdms_domain_model_documentcategory`
 
 Properties:
 

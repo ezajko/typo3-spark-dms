@@ -2,8 +2,10 @@
 
 return [
     'ctrl' => [
-        'title' => 'Document Type',
-        'label' => 'title',
+        'title' => 'Document Version',
+        'label' => 'version_label',
+        'label_alt' => 'file',
+        'label_alt_force' => true,
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'sortby' => 'sorting',
@@ -15,17 +17,17 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
-        'searchFields' => 'title,description',
-        'iconfile' => 'EXT:spark_dms/Resources/Public/Icons/DocumentType.svg',
+        'hideTable' => false,// Inline only
+        'searchFields' => 'version_label',
+        'iconfile' => 'EXT:spark_dms/Resources/Public/Icons/DocumentVersion.svg',
         'security' => [
             'ignorePageTypeRestriction' => true,
         ],
     ],
     'types' => [
         '1' => ['showitem' => '
-            --div--;General, title, slug, uuid, description,
+            --div--;General, version_label, file, uuid,
             --div--;Language, sys_language_uid, l10n_parent, l10n_diffsource,
-            --div--;Access, hidden,
         '],
     ],
     'columns' => [
@@ -43,8 +45,8 @@ return [
                 'items' => [
                     ['label' => '', 'value' => 0],
                 ],
-                'foreign_table' => 'tx_sparkdms_domain_model_document_type',
-                'foreign_table_where' => 'AND {#tx_sparkdms_domain_model_document_type}.{#sys_language_uid} = 0',
+                'foreign_table' => 'tx_sparkdms_domain_model_documentversion',
+                'foreign_table_where' => 'AND {#tx_sparkdms_domain_model_documentversion}.{#sys_language_uid} = 0',
             ],
         ],
         'l10n_diffsource' => [
@@ -57,35 +59,37 @@ return [
         ],
         
         // Custom Fields
-        'title' => [
+        'version_label' => [
             'exclude' => true,
-            'label' => 'Title',
-            'config' => ['type' => 'input', 'eval' => 'trim', 'required' => true],
+            'label' => 'Version Label (e.g. v1.0, Draft)',
+            'config' => ['type' => 'input', 'eval' => 'trim', 'placeholder' => 'v1.0'],
         ],
-        // Removed: parent field (DocumentType is now flat)
-        'slug' => [
+        'file' => [
             'exclude' => true,
-            'label' => 'Slug',
+            'label' => 'File',
             'config' => [
-                'type' => 'slug',
-                'generatorOptions' => [
-                    'fields' => ['title'],
-                    'fieldSeparator' => '/',
-                    'replacements' => ['/' => ''],
-                ],
-                'fallbackCharacter' => '-',
-                'eval' => 'uniqueInSite',
+                'type' => 'file',
+                'maxitems' => 1,
+                'allowed' => 'pdf,doc,docx,xls,xlsx,ppt,pptx,odt,ods,odp',
             ],
+        ],
+        'document' => [
+            'config' => ['type' => 'passthrough'],
         ],
         'uuid' => [
             'exclude' => true,
             'label' => 'UUID',
             'config' => ['type' => 'uuid'],
         ],
-        'description' => [
+        'created_at' => [
             'exclude' => true,
-            'label' => 'Description',
-            'config' => ['type' => 'text', 'cols' => 40, 'rows' => 15, 'enableRichtext' => true],
+            'label' => 'Created At',
+            'config' => [
+                'type' => 'datetime',
+                'format' => 'datetime',
+                'default' => 'now',
+                'readOnly' => true,
+            ],
         ],
     ],
 ];

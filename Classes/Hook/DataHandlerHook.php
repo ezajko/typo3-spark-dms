@@ -93,11 +93,11 @@ class DataHandlerHook
     protected function getDocumentVersions(int $documentUid): array
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_sparkdms_domain_model_document_version');
+            ->getQueryBuilderForTable('tx_sparkdms_domain_model_documentversion');
         
         return $queryBuilder
             ->select('*')
-            ->from('tx_sparkdms_domain_model_document_version')
+            ->from('tx_sparkdms_domain_model_documentversion')
             ->where(
                 $queryBuilder->expr()->eq('document', $queryBuilder->createNamedParameter($documentUid, Connection::PARAM_INT))
             )
@@ -121,7 +121,7 @@ class DataHandlerHook
                 ->select('uid_local')
                 ->from('sys_file_reference')
                 ->where(
-                    $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter('tx_sparkdms_domain_model_document_version')),
+                    $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter('tx_sparkdms_domain_model_documentversion')),
                     $queryBuilder->expr()->eq('fieldname', $queryBuilder->createNamedParameter('file')),
                     $queryBuilder->expr()->eq('uid_foreign', $queryBuilder->createNamedParameter($version['uid'], Connection::PARAM_INT))
                 )
@@ -202,11 +202,11 @@ class DataHandlerHook
         }
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_sparkdms_domain_model_document_type');
+            ->getQueryBuilderForTable('tx_sparkdms_domain_model_documenttype');
         
         $result = $queryBuilder
             ->select('slug')
-            ->from('tx_sparkdms_domain_model_document_type')
+            ->from('tx_sparkdms_domain_model_documenttype')
             ->where(
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($typeUid, Connection::PARAM_INT))
             )

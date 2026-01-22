@@ -103,7 +103,7 @@ class ListDocumentsCommand extends Command
             ->from('tx_sparkdms_domain_model_document', 'd')
             ->leftJoin(
                 'd',
-                'tx_sparkdms_domain_model_document_type',
+                'tx_sparkdms_domain_model_documenttype',
                 't',
                 $queryBuilder->expr()->eq('d.type', $queryBuilder->quoteIdentifier('t.uid'))
             )
@@ -123,7 +123,7 @@ class ListDocumentsCommand extends Command
             $queryBuilder
                 ->innerJoin(
                     'd',
-                    'tx_sparkdms_document_category_mm',
+                    'tx_sparkdms_documentcategory_mm',
                     'mm',
                     $queryBuilder->expr()->eq('d.uid', $queryBuilder->quoteIdentifier('mm.uid_local'))
                 )
@@ -176,11 +176,11 @@ class ListDocumentsCommand extends Command
         foreach ($documents as &$doc) {
             // Version count
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-                ->getQueryBuilderForTable('tx_sparkdms_domain_model_document_version');
+                ->getQueryBuilderForTable('tx_sparkdms_domain_model_documentversion');
             
             $count = $queryBuilder
                 ->count('uid')
-                ->from('tx_sparkdms_domain_model_document_version')
+                ->from('tx_sparkdms_domain_model_documentversion')
                 ->where(
                     $queryBuilder->expr()->eq('document', $queryBuilder->createNamedParameter($doc['uid']))
                 )
@@ -200,14 +200,14 @@ class ListDocumentsCommand extends Command
     protected function getDocumentCategories(int $documentUid): string
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_sparkdms_domain_model_document_category');
+            ->getQueryBuilderForTable('tx_sparkdms_domain_model_documentcategory');
 
         $categories = $queryBuilder
             ->select('c.title')
-            ->from('tx_sparkdms_domain_model_document_category', 'c')
+            ->from('tx_sparkdms_domain_model_documentcategory', 'c')
             ->innerJoin(
                 'c',
-                'tx_sparkdms_document_category_mm',
+                'tx_sparkdms_documentcategory_mm',
                 'mm',
                 $queryBuilder->expr()->eq('c.uid', $queryBuilder->quoteIdentifier('mm.uid_foreign'))
             )

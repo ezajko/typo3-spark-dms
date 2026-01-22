@@ -74,7 +74,7 @@
                         <config>
                             <type>select</type>
                             <renderType>selectMultipleSideBySide</renderType>
-                            <foreign_table>tx_sparkdms_domain_model_document_type</foreign_table>
+                            <foreign_table>tx_sparkdms_domain_model_documenttype</foreign_table>
                             <minitems>0</minitems>
                             <maxitems>99</maxitems>
                         </config>
@@ -86,7 +86,7 @@
                         <config>
                             <type>select</type>
                             <renderType>selectTree</renderType>
-                            <foreign_table>tx_sparkdms_domain_model_document_category</foreign_table>
+                            <foreign_table>tx_sparkdms_domain_model_documentcategory</foreign_table>
                             <treeConfig>
                                 <parentField>parent</parentField>
                                 <appearance>

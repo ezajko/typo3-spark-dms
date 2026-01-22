@@ -343,7 +343,7 @@ class ImportDocumentCommand extends Command
         $fileReference = $this->resourceFactory->createFileReferenceObject([
             'uid_local' => $file->getUid(),
             'uid_foreign' => 0, // Will be set after persist
-            'tablenames' => 'tx_sparkdms_domain_model_document_version',
+            'tablenames' => 'tx_sparkdms_domain_model_documentversion',
             'fieldname' => 'file',
         ]);
 

@@ -54,43 +54,43 @@
             </trans-unit>
 
             <!-- Document Version Model -->
-            <trans-unit id="tx_sparkdms_domain_model_document_version">
+            <trans-unit id="tx_sparkdms_domain_model_documentversion">
                 <source>Document Version</source>
                 <target>Verzija dokumenta</target>
             </trans-unit>
-            <trans-unit id="tx_sparkdms_domain_model_document_version.version_number">
+            <trans-unit id="tx_sparkdms_domain_model_documentversion.version_number">
                 <source>Version Number</source>
                 <target>Broj verzije</target>
             </trans-unit>
-            <trans-unit id="tx_sparkdms_domain_model_document_version.file">
+            <trans-unit id="tx_sparkdms_domain_model_documentversion.file">
                 <source>File</source>
                 <target>Fajl</target>
             </trans-unit>
-            <trans-unit id="tx_sparkdms_domain_model_document_version.created_at">
+            <trans-unit id="tx_sparkdms_domain_model_documentversion.created_at">
                 <source>Created At</source>
                 <target>Kreirano</target>
             </trans-unit>
 
             <!-- Document Type Model -->
-            <trans-unit id="tx_sparkdms_domain_model_document_type">
+            <trans-unit id="tx_sparkdms_domain_model_documenttype">
                 <source>Document Type</source>
                 <target>Tip dokumenta</target>
             </trans-unit>
-            <trans-unit id="tx_sparkdms_domain_model_document_type.title">
+            <trans-unit id="tx_sparkdms_domain_model_documenttype.title">
                 <source>Title</source>
                 <target>Naslov</target>
             </trans-unit>
 
             <!-- Document Category Model -->
-            <trans-unit id="tx_sparkdms_domain_model_document_category">
+            <trans-unit id="tx_sparkdms_domain_model_documentcategory">
                 <source>Document Category</source>
                 <target>Kategorija dokumenta</target>
             </trans-unit>
-            <trans-unit id="tx_sparkdms_domain_model_document_category.title">
+            <trans-unit id="tx_sparkdms_domain_model_documentcategory.title">
                 <source>Title</source>
                 <target>Naslov</target>
             </trans-unit>
-            <trans-unit id="tx_sparkdms_domain_model_document_category.parent">
+            <trans-unit id="tx_sparkdms_domain_model_documentcategory.parent">
                 <source>Parent Category</source>
                 <target>Nadređena kategorija</target>
             </trans-unit>
