@@ -1,0 +1,22 @@
+mod.wizards.newContentElement.wizardItems.documents {
+    header = Documents
+    elements {
+        sparkdms_list {
+            iconIdentifier = ext-spark_dms-wizard-list
+            title = Document List
+            description = Display a list of documents with filtering and pagination
+            tt_content_defValues {
+                CType = sparkdms_list
+            }
+        }
+        sparkdms_detail {
+            iconIdentifier = ext-spark_dms-wizard-detail
+            title = Document Detail
+            description = Display details of a single document
+            tt_content_defValues {
+                CType = sparkdms_detail
+            }
+        }
+    }
+    show = *
+}

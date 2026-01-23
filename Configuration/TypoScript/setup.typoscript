@@ -70,3 +70,19 @@ config.tx_extbase.persistence.classes {
     }
 }
 
+
+# CType: Document List
+tt_content.sparkdms_list =< plugin.tx_sparkdms_pi1
+tt_content.sparkdms_list {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    extensionName = SparkDms
+    pluginName = Pi1
+}
+
+# CType: Document Detail
+tt_content.sparkdms_detail =< plugin.tx_sparkdms_pi2
+tt_content.sparkdms_detail {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    extensionName = SparkDms
+    pluginName = Pi2
+}
