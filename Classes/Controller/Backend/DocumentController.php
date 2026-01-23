@@ -273,16 +273,62 @@ class DocumentController extends ActionController
     protected function getAvailableCategories(int $storagePid): array
     {
         $qb = $this->connectionPool->getQueryBuilderForTable(self::TABLE_CATEGORY);
-        $qb->select('uid', 'title')
-            ->from(self::TABLE_CATEGORY)
-            ->where($qb->expr()->eq('deleted', 0))
-            ->orderBy('title', 'ASC');
+        $qb->select('c.uid', 'c.title')
+            ->from(self::TABLE_CATEGORY, 'c')
+            ->where($qb->expr()->eq('c.deleted', 0))
+            ->orderBy('c.title', 'ASC');
         
         if ($storagePid > 0) {
-            $qb->andWhere($qb->expr()->eq('pid', $storagePid));
+            $qb->andWhere($qb->expr()->eq('c.pid', $storagePid));
+        }
+
+        $allCategories = $qb->executeQuery()->fetchAllAssociative();
+
+        // Admin sees everything
+        if ($this->getBackendUser()->isAdmin()) {
+            return $allCategories;
+        }
+
+        // Filter based on allowed_be_groups
+        $userGroups = $this->getBackendUser()->userGroupsUID; // integers array
+        $filtered = [];
+
+        foreach ($allCategories as $cat) {
+            // Check allowed_be_groups (MM relation via tx_sparkdms_category_begroup_mm)
+            // Ideally we should join this in the main query, but for now we check per category or bulk fetch
+            // Let's optimize by fetching all permissions first
+            if ($this->hasAccessToCategory((int)$cat['uid'], $userGroups)) {
+                $filtered[] = $cat;
+            }
         }
         
-        return $qb->executeQuery()->fetchAllAssociative();
+        return $filtered;
+    }
+
+    /**
+     * Check if current user has access to category
+     */
+    protected function hasAccessToCategory(int $categoryUid, array $userGroups): bool
+    {
+        $qb = $this->connectionPool->getQueryBuilderForTable('tx_sparkdms_category_begroup_mm');
+        $allowedGroups = $qb->select('uid_foreign')
+            ->from('tx_sparkdms_category_begroup_mm')
+            ->where($qb->expr()->eq('uid_local', $categoryUid))
+            ->executeQuery()
+            ->fetchFirstColumn();
+
+        // Empty = Public
+        if (empty($allowedGroups)) {
+            return true;
+        }
+
+        // Check intersection
+        return !empty(array_intersect($allowedGroups, $userGroups));
+    }
+
+    protected function getBackendUser(): \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+    {
+        return $GLOBALS['BE_USER'];
     }
 
     /**

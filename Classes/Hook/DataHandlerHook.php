@@ -22,6 +22,73 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class DataHandlerHook
 {
     /**
+     * Called before database operations. Validates permissions.
+     */
+    public function processDatamap_preProcessFieldArray(
+        array &$fieldArray,
+        string $table,
+        string|int $id,
+        DataHandler $dataHandler
+    ): void {
+        // Only process Document records
+        if ($table !== 'tx_sparkdms_domain_model_document') {
+            return;
+        }
+
+        // Check if category is being set/changed
+        if (!isset($fieldArray['category'])) {
+            return;
+        }
+
+        // Category field in Datamap is usually comma-separated UIDs or int
+        // We only check the first category if multiple are allowed (usually logic applies strict)
+        $categoryIds = GeneralUtility::intExplode(',', (string)$fieldArray['category'], true);
+        
+        foreach ($categoryIds as $catUid) {
+            if (!$this->hasAccessToCategory($catUid)) {
+                $logger = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Log\LogManager::class)->getLogger(__CLASS__);
+                $logger->warning('Access denied to category', ['category' => $catUid, 'user' => $GLOBALS['BE_USER']->user['uid']]);
+                
+                // Add error flash message (via DataHandler log)
+                $dataHandler->log($table, $id, 1, 0, 1, 'Access denied: You are not allowed to use this category.', 1);
+                
+                // Unset category to prevent save (or throw exception)
+                // Unsetting might leave record without category. 
+                // Better to throw exception to stop everything? 
+                // Setting generic error in FieldArray might not stop Save but just finding field.
+                // Let's throw Exception for strict security.
+                throw new \RuntimeException('Access denied: You are not allowed to use Category UID ' . $catUid);
+            }
+        }
+    }
+
+    /**
+     * Check access helper (duplicated logic, could be service, but keep simple)
+     */
+    protected function hasAccessToCategory(int $categoryUid): bool
+    {
+        // Admin ok
+        if ($GLOBALS['BE_USER']->isAdmin()) {
+            return true;
+        }
+
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_sparkdms_category_begroup_mm');
+        $allowedGroups = $queryBuilder->select('uid_foreign')
+            ->from('tx_sparkdms_category_begroup_mm')
+            ->where($queryBuilder->expr()->eq('uid_local', $categoryUid))
+            ->executeQuery()
+            ->fetchFirstColumn();
+
+        if (empty($allowedGroups)) {
+            return true;
+        }
+
+        $userGroups = $GLOBALS['BE_USER']->userGroupsUID;
+        return !empty(array_intersect($allowedGroups, $userGroups));
+    }
+
+    /**
      * Called after database operations (insert/update)
      */
     public function processDatamap_afterDatabaseOperations(
